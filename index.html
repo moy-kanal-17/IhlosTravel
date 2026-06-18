@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+```<!DOCTYPE html>
 <html lang="uz">
 <head>
   <meta charset="UTF-8" />
@@ -1234,6 +1234,176 @@
     .modal-note a { color: var(--gold); text-decoration: none; }
     .modal-note a:hover { text-decoration: underline; }
 
+    /* ═════════════════════════════ VIDEOS ═════════════════════════════ */
+    .videos-section { background: var(--midnight); }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 60px;
+    }
+
+    .video-thumb {
+      position: relative;
+      aspect-ratio: 9/16;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--dark-lighter);
+      border: 1px solid var(--glass-border);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .video-thumb:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--gold);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px var(--gold-glow);
+    }
+    .video-thumb-bg {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s;
+    }
+    .video-thumb:hover .video-thumb-bg { transform: scale(1.08); }
+    .video-thumb-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10,10,15,0.9) 0%,
+        rgba(10,10,15,0.2) 50%,
+        rgba(10,10,15,0.4) 100%
+      );
+    }
+    .video-play-btn {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px; height: 64px;
+      background: rgba(212,175,55,0.2);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+    }
+    .video-thumb:hover .video-play-btn {
+      background: var(--gold);
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 30px var(--gold-glow);
+    }
+    .video-play-btn svg { width: 28px; height: 28px; fill: var(--gold); margin-left: 4px; }
+    .video-thumb:hover .video-play-btn svg { fill: var(--dark); }
+    .video-thumb-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 16px 16px;
+    }
+    .video-thumb-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 6px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .video-thumb-num::before {
+      content: ''; width: 20px; height: 1px; background: var(--gold);
+    }
+    .video-thumb-title {
+      font-size: 0.95rem; font-weight: 600; color: var(--white);
+    }
+    .video-instagram-icon {
+      position: absolute; top: 14px; left: 14px;
+      width: 36px; height: 36px;
+      background: rgba(10,10,15,0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--glass-border);
+    }
+    .video-instagram-icon svg { width: 18px; height: 18px; }
+
+    /* Video Player Modal */
+    .video-modal-backdrop {
+      display: none; position: fixed; inset: 0; z-index: 3000;
+      background: rgba(0,0,0,0.97);
+      align-items: center; justify-content: center;
+    }
+    .video-modal-backdrop.open { display: flex; }
+    .video-modal {
+      position: relative;
+      width: min(400px, 90vw);
+      height: min(711px, 92vh);
+      border-radius: 24px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 30px 100px rgba(0,0,0,0.8);
+      animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .video-modal video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .video-modal-close {
+      position: absolute; top: 16px; right: 16px; z-index: 10;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white); font-size: 1.4rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .video-modal-close:hover { background: var(--gold); color: var(--dark); }
+    .video-modal-nav {
+      position: absolute; top: 50%; right: -64px;
+      transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .video-nav-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer; transition: all 0.3s;
+      border: none;
+    }
+    .video-nav-dot.active { background: var(--gold); transform: scale(1.3); }
+    .video-modal-controls {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 60px 20px 24px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+    }
+    .video-modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--white);
+      margin-bottom: 12px;
+    }
+    .video-modal-actions {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .vma-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .vma-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--dark); }
+    .vma-btn svg { width: 20px; height: 20px; }
+    .vma-progress {
+      flex: 1; height: 3px; background: rgba(255,255,255,0.2);
+      border-radius: 2px; cursor: pointer; position: relative;
+    }
+    .vma-progress-fill {
+      height: 100%; background: var(--gold); border-radius: 2px;
+      width: 0; transition: none;
+      pointer-events: none;
+    }
+
+    @media (max-width: 1024px) {
+      .videos-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-modal-nav { display: none; }
+    }
+    @media (max-width: 640px) {
+      .videos-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .video-modal { width: 95vw; height: 88vh; }
+    }
+
     /* ═════════════════════════════ RESPONSIVE ═════════════════════════════ */
     @media (max-width: 1024px) {
       .nav-links { display: none; }
@@ -1287,6 +1457,9 @@
       .footer-inner { flex-direction: column; gap: 32px; }
     }
   </style>
+  <meta property="og:image" content="https://bolt.new/static/og_default.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
 <body>
 
@@ -1311,6 +1484,7 @@
       <li><a href="#destinations">Ziyoratgohlar</a></li>
       <li><a href="#packages">Paketlar</a></li>
       <li><a href="#timeline">Jarayon</a></li>
+      <li><a href="#videos">Videolar</a></li>
       <li><a href="#gallery">Galereya</a></li>
       <li><a href="#contact">Bog'lanish</a></li>
       <li><a href="#packages" class="nav-cta">Bron Qilish</a></li>
@@ -1328,6 +1502,7 @@
   <a href="#destinations">Ziyoratgohlar</a>
   <a href="#packages">Paketlar</a>
   <a href="#timeline">Jarayon</a>
+  <a href="#videos">Videolar</a>
   <a href="#gallery">Galereya</a>
   <a href="#contact">Bog'lanish</a>
   <a href="#packages" class="nav-cta" style="border-radius: 50px; padding: 12px 32px; margin-top: 20px;">Bron Qilish</a>
@@ -1419,8 +1594,332 @@
 
   <div class="pkg-grid">
 
-    <!-- Package: 10 kun Comfort -->
+    <!-- Package: Standart -->
+    <div class="pkg-card">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80" alt="Standart"/>
+        <div class="pkg-img-overlay"></div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-days">
+          <div class="pkg-day-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            3 kun Madina
+          </div>
+          <div class="pkg-day-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            7 kun Makka
+          </div>
+        </div>
+        <h3>Standart</h3>
+        <div class="pkg-meta">
+          <div class="pkg-meta-item">
+            <label>Madina Mehmonxonasi</label>
+            <span>Huda Taiba</span>
+          </div>
+          <div class="pkg-meta-item">
+            <label>Makka Mehmonxonasi</label>
+            <span>Al Safwah</span>
+          </div>
+        </div>
+        <div class="pkg-prices">
+          <div class="pkg-price-row">
+            <span>4 kishi xonada</span>
+            <span>$950</span>
+          </div>
+          <div class="pkg-price-row">
+            <span>3 kishi xonada</span>
+            <span>$1,000</span>
+          </div>
+          <div class="pkg-price-row">
+            <span>2 kishi xonada</span>
+            <span>$1,050</span>
+          </div>
+        </div>
+        <div class="pkg-includes">
+          <h4>Paketga kiritilgan</h4>
+          <div class="pkg-include-list">
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Ekskursiyalar</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>2 mahal taom</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Viza</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Guruh rahbari</div>
+          </div>
+        </div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-footer">
+          <a href="tel:+998773094442" class="pkg-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.72 12 19.79 19.79 0 011.64 3.62a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            +99877 309 44 42
+          </a>
+          <button class="btn-book" onclick="openModal('Standart', '3 kun Madina + 7 kun Makka', 'Al Safwah')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Bron Qilish
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Package: Standart+ -->
+    <div class="pkg-card">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80" alt="Standart+"/>
+        <div class="pkg-img-overlay"></div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-days">
+          <div class="pkg-day-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            3 kun Madina
+          </div>
+          <div class="pkg-day-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            11 kun Makka
+          </div>
+        </div>
+        <h3>Standart+</h3>
+        <div class="pkg-meta">
+          <div class="pkg-meta-item">
+            <label>Madina Mehmonxonasi</label>
+            <span>Huda Taiba (100m)</span>
+          </div>
+          <div class="pkg-meta-item">
+            <label>Makka Mehmonxonasi</label>
+            <span>Mahd Al Resala (2km)</span>
+          </div>
+        </div>
+        <div class="pkg-prices">
+          <div class="pkg-price-row">
+            <span>4 kishi xonada</span>
+            <span>$1,050</span>
+          </div>
+          <div class="pkg-price-row">
+            <span>3 kishi xonada</span>
+            <span>$1,100</span>
+          </div>
+          <div class="pkg-price-row">
+            <span>2 kishi xonada</span>
+            <span>$1,150</span>
+          </div>
+        </div>
+        <div class="pkg-includes">
+          <h4>Paketga kiritilgan</h4>
+          <div class="pkg-include-list">
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Ekskursiyalar</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>2-3 mahal taom</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Viza</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Guruh rahbari</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>5L Zam-Zam + Sovg'alar</div>
+          </div>
+        </div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-footer">
+          <a href="tel:+998773064442" class="pkg-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.72 12 19.79 19.79 0 011.64 3.62a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            +99877 306 44 42
+          </a>
+          <button class="btn-book" onclick="openModal('Standart+', '3 kun Madina + 11 kun Makka', 'Mahd Al Resala')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Bron Qilish
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Package: Comfort (featured) -->
     <div class="pkg-card featured">
+      <div class="pkg-badge">Eng ko'p tanlov</div>
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80" alt="Comfort"/>
+        <div class="pkg-img-overlay"></div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-days">
+          <div class="pkg-day-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            4 kun Madina
+          </div>
+          <div class="pkg-day-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            6 kun Makka
+          </div>
+        </div>
+        <h3>Comfort</h3>
+        <div class="pkg-meta">
+          <div class="pkg-meta-item">
+            <label>Madina Mehmonxonasi</label>
+            <span>Nusk al Hijra</span>
+          </div>
+          <div class="pkg-meta-item">
+            <label>Makka Mehmonxonasi</label>
+            <span>Taj Park</span>
+          </div>
+        </div>
+        <div class="pkg-prices">
+          <div class="pkg-price-row">
+            <span>4 kishi xonada</span>
+            <span>$1,100</span>
+          </div>
+          <div class="pkg-price-row">
+            <span>3 kishi xonada</span>
+            <span>$1,150</span>
+          </div>
+          <div class="pkg-price-row">
+            <span>2 kishi xonada</span>
+            <span>$1,200</span>
+          </div>
+        </div>
+        <div class="pkg-includes">
+          <h4>Paketga kiritilgan</h4>
+          <div class="pkg-include-list">
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Ekskursiyalar</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Kuniga 2-3 mahal taom</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Viza</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Guruh rahbari</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Shifokor</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Sovg'alar</div>
+          </div>
+        </div>
+        <div class="pkg-dates">
+          <h4>Joylar mavjud</h4>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 18.06.2025</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 25.06.2025</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 02.07.2025</li>
+          </ul>
+        </div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-footer">
+          <a href="tel:+998773094442" class="pkg-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.72 12 19.79 19.79 0 011.64 3.62a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            +99877 309 44 42
+          </a>
+          <button class="btn-book" onclick="openModal('Comfort', '4 kun Madina + 6 kun Makka', 'Taj Park')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Bron Qilish
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Package: Luxury -->
+    <div class="pkg-card">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?w=600&q=80" alt="Luxury"/>
+        <div class="pkg-img-overlay"></div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-days">
+          <div class="pkg-day-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            7 kun Madina
+          </div>
+          <div class="pkg-day-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            10 kun Makka
+          </div>
+        </div>
+        <h3>Luxury</h3>
+        <div class="pkg-meta">
+          <div class="pkg-meta-item">
+            <label>Madina Mehmonxonasi</label>
+            <span>Anwar Al-Madinah</span>
+          </div>
+          <div class="pkg-meta-item">
+            <label>Makka Mehmonxonasi</label>
+            <span>Hilton Makka</span>
+          </div>
+        </div>
+        <div class="pkg-prices">
+          <div class="pkg-price-row">
+            <span>2 kishi xonada</span>
+            <span>$1,800</span>
+          </div>
+          <div class="pkg-price-row">
+            <span>1 kishi xonada</span>
+            <span>$2,200</span>
+          </div>
+        </div>
+        <div class="pkg-includes">
+          <h4>Paketga kiritilgan</h4>
+          <div class="pkg-include-list">
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Premium Ekskursiyalar</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Kundalik bufet</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Viza + Sug'urta</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>VIP Guruh rahbari</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Shifokor</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>10L Zam-Zam</div>
+          </div>
+        </div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-footer">
+          <a href="tel:+998773094442" class="pkg-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.72 12 19.79 19.79 0 011.64 3.62a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            +99877 309 44 42
+          </a>
+          <button class="btn-book" onclick="openModal('Luxury', '7 kun Madina + 10 kun Makka', 'Hilton Makka')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Bron Qilish
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Package: Individual -->
+    <div class="pkg-card">
+      <div class="pkg-img">
+        <img src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=600&q=80" alt="Individual"/>
+        <div class="pkg-img-overlay"></div>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-days">
+          <div class="pkg-day-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Siz tanlaysiz
+          </div>
+        </div>
+        <h3>Individual</h3>
+        <div class="pkg-meta">
+          <div class="pkg-meta-item">
+            <label>Mehmonxona</label>
+            <span>Siz tanlaysiz</span>
+          </div>
+          <div class="pkg-meta-item">
+            <label>Kunlar soni</label>
+            <span>Moslashuvchan</span>
+          </div>
+        </div>
+        <div class="pkg-prices">
+          <div class="pkg-price-row">
+            <span>Narx</span>
+            <span>Murojaat qiling</span>
+          </div>
+        </div>
+        <div class="pkg-includes">
+          <h4>Paketga kiritilgan</h4>
+          <div class="pkg-include-list">
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Shaxsiy dastur</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Istalgan mehmonxona</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Viza</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Shaxsiy rahbar</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>VIP xizmat</div>
+            <div class="pkg-include-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>24/7 yordam</div>
+          </div>
+        </div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-footer">
+          <a href="tel:+998773094442" class="pkg-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.72 12 19.79 19.79 0 011.64 3.62a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            +99877 309 44 42
+          </a>
+          <button class="btn-book" onclick="openModal('Individual', 'Moslashuvchan + Moslashuvchan', 'Siz tanlaysiz')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Murojaat Qilish
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
       <div class="pkg-badge">Eng ko'p tanlov</div>
       <div class="pkg-img">
         <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80" alt="Umra Comfort"/>
@@ -1592,70 +2091,6 @@
       </div>
     </div>
 
-    <!-- Package: Premium -->
-    <div class="pkg-card">
-      <div class="pkg-img">
-        <img src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?w=600&q=80" alt="Umra Premium"/>
-        <div class="pkg-img-overlay"></div>
-      </div>
-      <div class="pkg-body">
-        <div class="pkg-days">
-          <div class="pkg-day-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            7 kun Madina
-          </div>
-          <div class="pkg-day-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            10 kun Makka
-          </div>
-        </div>
-        <h3>Umra Premium</h3>
-        <div class="pkg-meta">
-          <div class="pkg-meta-item">
-            <label>Madina Mehmonxonasi</label>
-            <span>Anwar Al-Madinah</span>
-          </div>
-          <div class="pkg-meta-item">
-            <label>Makka Mehmonxonasi</label>
-            <span>Hilton Makka</span>
-          </div>
-        </div>
-
-        <div class="pkg-includes">
-          <h4>Paketga kiritilgan</h4>
-          <div class="pkg-include-list">
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Premium Ekskursiyalar
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Kundalik bufet
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Viza
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              VIP Guruh rahbari
-            </div>
-          </div>
-        </div>
-
-        <div class="pkg-divider"></div>
-        <div class="pkg-footer">
-          <a href="tel:+998773094442" class="pkg-phone">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.72 12 19.79 19.79 0 011.64 3.62a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            +99877 309 44 42
-          </a>
-          <button class="btn-book" onclick="openModal('Umra Premium', '7 kun Madina + 10 kun Makka', 'Hilton Makka')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            Bron Qilish
-          </button>
-        </div>
-      </div>
-    </div>
 
   </div>
 </section>
@@ -1959,6 +2394,106 @@
   </div>
 </section>
 
+<!-- VIDEOS -->
+<section class="videos-section fade-section" id="videos">
+  <div style="text-align: center; margin-bottom: 20px;">
+    <div class="section-label" style="justify-content: center;">Muqaddas Safar</div>
+    <div class="section-title">Ziyorat <span>Videolari</span></div>
+    <p class="section-sub" style="margin: 0 auto;">Umra safarimizdan jonli ko'rinishlar — har bir lahza sizni ilhomlantirishga tayyor.</p>
+  </div>
+
+  <div class="videos-grid">
+    <!-- Video 1 -->
+    <div class="video-thumb" onclick="openVideo(0)">
+      <img class="video-thumb-bg" src="video1.jpg" alt="Video 1"/>
+      <div class="video-thumb-overlay"></div>
+      <div class="video-instagram-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1.5" fill="white" stroke="none"/>
+        </svg>
+      </div>
+      <div class="video-play-btn">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="video-thumb-info">
+        <div class="video-thumb-num">Video 01</div>
+        <div class="video-thumb-title">Umra Yozda</div>
+      </div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-thumb" onclick="openVideo(1)">
+      <img class="video-thumb-bg" src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&q=80" alt="Video 2"/>
+      <div class="video-thumb-overlay"></div>
+      <div class="video-instagram-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1.5" fill="white" stroke="none"/>
+        </svg>
+      </div>
+      <div class="video-play-btn">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="video-thumb-info">
+        <div class="video-thumb-num">Video 02</div>
+        <div class="video-thumb-title">Madinai Munawwara</div>
+      </div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-thumb" onclick="openVideo(2)">
+      <img class="video-thumb-bg" src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=400&q=80" alt="Video 3"/>
+      <div class="video-thumb-overlay"></div>
+      <div class="video-instagram-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1.5" fill="white" stroke="none"/>
+        </svg>
+      </div>
+      <div class="video-play-btn">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="video-thumb-info">
+        <div class="video-thumb-num">Video 03</div>
+        <div class="video-thumb-title">Muqaddas Masjid</div>
+      </div>
+    </div>
+
+    <!-- Video 4 -->
+    <div class="video-thumb" onclick="openVideo(3)">
+      <img class="video-thumb-bg" src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?w=400&q=80" alt="Video 4"/>
+      <div class="video-thumb-overlay"></div>
+      <div class="video-instagram-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1.5" fill="white" stroke="none"/>
+        </svg>
+      </div>
+      <div class="video-play-btn">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="video-thumb-info">
+        <div class="video-thumb-num">Video 04</div>
+        <div class="video-thumb-title">Umra Sayohati</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO PLAYER MODAL -->
+<div class="video-modal-backdrop" id="video-modal">
+  <div class="video-modal" id="video-modal-inner">
+    <button class="video-modal-close" onclick="closeVideo()">×</button>
+    <video id="video-player" playsinline autoplay controls></video>
+    <div class="video-modal-nav" id="video-nav-dots"></div>
+  </div>
+</div>
+
 <!-- GALLERY -->
 <section class="gallery fade-section" id="gallery">
   <div style="text-align: center; margin-bottom: 40px;">
@@ -1971,16 +2506,16 @@
       <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=1000&q=80" alt="Ka'ba kechasi"/>
     </div>
     <div class="g-item">
-      <img src="people2.jpg" alt="Masjid Nabavi"/>
+      <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80" alt="Masjid Nabavi"/>
     </div>
     <div class="g-item">
-      <img src="people.jpg" alt="Umra ziyoratchilar"/>
+      <img src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?w=600&q=80" alt="Umra ziyoratchilar"/>
     </div>
     <div class="g-item">
-      <img src="kaba.jpg" alt="Masjid al-Haram"/>
+      <img src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=600&q=80" alt="Masjid al-Haram"/>
     </div>
     <div class="g-item">
-      <img src="masjidichi.jpg" alt="Masjid ichi"/>
+      <img src="https://images.unsplash.com/photo-1519817650394-5ba5ac3536e6?w=600&q=80" alt="Masjid ichi"/>
     </div>
   </div>
 </section>
@@ -2151,6 +2686,16 @@
     <div class="form-field">
       <label>Jo'nash sanasi</label>
       <input type="date" id="m-date"/>
+    </div>
+    <div class="form-field">
+      <label>Paket turi</label>
+      <select id="m-pkg-type">
+        <option>Standart</option>
+        <option>Standart+</option>
+        <option>Comfort</option>
+        <option>Luxury</option>
+        <option>Individual</option>
+      </select>
     </div>
     <div class="form-field">
       <label>Guruh soni</label>
@@ -2393,6 +2938,12 @@
     }
     document.getElementById('m-hotel').value = hotel || '';
 
+    const pkgTypeSelect = document.getElementById('m-pkg-type');
+    if (pkgTypeSelect) {
+      const opt = Array.from(pkgTypeSelect.options).find(o => o.value === pkgName);
+      if (opt) pkgTypeSelect.value = pkgName;
+    }
+
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -2443,10 +2994,73 @@
     });
   });
 
+  // ═════════════════════════════ VIDEO PLAYER ═════════════════════════════
+  const videoData = [
+    { src: 'video1.mp4', title: 'Ka\'ba Mukarrama' },
+    { src: 'video2.mp4', title: 'Madinai Munawwara' },
+    { src: 'video3.mp4', title: 'Muqaddas Masjid' },
+    { src: 'video4.mp4', title: 'Umra Sayohati' },
+  ];
+
+  let currentVideoIndex = 0;
+  const videoPlayer = document.getElementById('video-player');
+  const videoModal = document.getElementById('video-modal');
+  const videoNavDots = document.getElementById('video-nav-dots');
+
+  // Build nav dots
+  videoData.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'video-nav-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => loadVideo(i));
+    videoNavDots.appendChild(dot);
+  });
+
+  function loadVideo(index) {
+    currentVideoIndex = index;
+    videoPlayer.src = videoData[index].src;
+    videoPlayer.play().catch(() => {});
+    document.querySelectorAll('.video-nav-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === index);
+    });
+  }
+
+  function openVideo(index) {
+    loadVideo(index);
+    videoModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideo() {
+    videoPlayer.pause();
+    videoPlayer.src = '';
+    videoModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Click outside closes
+  videoModal.addEventListener('click', (e) => {
+    if (e.target === videoModal) closeVideo();
+  });
+
+  // Swipe to next/prev video on touch
+  let touchStartY = 0;
+  const vmInner = document.getElementById('video-modal-inner');
+  vmInner.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
+  vmInner.addEventListener('touchend', (e) => {
+    const delta = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(delta) > 60) {
+      const next = delta > 0
+        ? Math.min(currentVideoIndex + 1, videoData.length - 1)
+        : Math.max(currentVideoIndex - 1, 0);
+      if (next !== currentVideoIndex) loadVideo(next);
+    }
+  });
+
   // ═════════════════════════════ ESCAPE KEY CLOSE MODAL ═════════════════════════════
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeModal();
+      closeVideo();
       hamburger.classList.remove('active');
       mobileMenu.classList.remove('open');
       document.body.style.overflow = '';
