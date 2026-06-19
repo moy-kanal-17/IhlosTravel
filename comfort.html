@@ -8,6 +8,115 @@
   <title>Comfort Paket — Umra Sayohati</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+
+
+
+/* Этот класс заставит картинку сжиматься и никогда не вылезать за пределы экрана */
+.responsive-img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* На всякий случай зажмем сам контейнер tl-c, чтобы он не раздувался на мобилках */
+.tl-c {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Фикс для всего сайта, чтобы вообще ничего не могло вылезти за правый край экрана */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Мягкая подложка с размытием заднего плана */
+.modal {
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Чуть светлее фон, чтобы было видно размытие */
+  backdrop-filter: blur(8px); /* Красивое размытие сайта на фоне */
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* Изначально модалка полностью прозрачна и неосязаема для кликов */
+  opacity: 0;
+  pointer-events: none; 
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Когда модалка активна — она плавно появляется и реагирует на клики */
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Эффект мягкого «выплывания» и увеличения картинки */
+.modal-content {
+  max-width: 92%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 16px; /* Округлим края картинки для мягкости */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  
+  /* Начальное состояние: немного опущена вниз и уменьшена */
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* Пружинистый мягкий эффект */
+}
+
+/* Конечная точка анимации картинки */
+.modal.show .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Красивый аккуратный крестик */
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 36px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.modal-close:hover {
+  color: #fff;
+}
+
+
+
+/* Стили для картинки-превью до нажатия */
+.clickable-preview {
+  border-radius: 12px; /* Мягкие круглые углы, как у открытого окна */
+  cursor: zoom-in; /* Курсор в виде лупы с плюсиком */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  will-change: transform; /* Оптимизация для плавной анимации на мобилках */
+}
+
+/* Эффект при наведении (работает на компьютерах) */
+@media (hover: hover) {
+  .clickable-preview:hover {
+    transform: translateY(-4px) scale(1.02); /* Картинка мягко приподнимается и увеличивается */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Появляется мягкая тень */
+    filter: brightness(1.05); /* Становится капельку ярче, показывая кликабельность */
+  }
+}
+
+/* Эффект при клике / тапе (для мобилок и ПК в момент нажатия) */
+.clickable-preview:active {
+  transform: scale(0.98); /* Картинка слегка сжимается при нажатии пальцем */
+  transition: transform 0.1s ease;
+}
+
+
     :root{--gold:#D4AF37;--gold-mid:#F0D778;--dark:#0C0B09;--card:#1E1B14;--border:rgba(212,175,55,0.18);--border-soft:rgba(255,255,255,0.07);--text:#F2EDD6;--muted:#8B856E;--green-deep:#0D2B1E}
     *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
     body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -182,6 +291,25 @@
         <div class="tli"><div class="tl-l"><div class="tl-d"></div><div class="tl-line"></div></div><div class="tl-c"><div class="tl-t">Madina</div><div class="tl-s">Nusk al Hijra, ziyoratlar</div><div class="tl-b">4 kun</div></div></div>
         <div class="tli"><div class="tl-l"><div class="tl-d"></div><div class="tl-line"></div></div><div class="tl-c"><div class="tl-t">Makka</div><div class="tl-s">Taj Park, Umra</div><div class="tl-b">6 kun</div></div></div>
         <div class="tli"><div class="tl-l"><div class="tl-d dim"></div></div><div class="tl-c" style="padding-bottom:0"><div class="tl-t">Jidda → Toshkent</div><div class="tl-s">Qaytish</div></div></div>
+<!-- Твой блок с картинкой -->
+<div class="tli">
+  <div class="tl-l">
+    <div class="tl-d dim"></div>
+  </div>
+  <div class="tl-c" style="padding-bottom:0">
+    <!-- Добавили класс clickable-preview -->
+    <img src="comfort.png" alt="Comfort" class="responsive-img clickable-preview" onclick="openModal()">
+
+  </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО С УЛУЧШЕННОЙ ЛОГИКОЙ -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <span class="modal-close">&times;</span>
+  <img class="modal-content" id="modalImg" onclick="event.stopPropagation()">
+</div>
+
+
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px">
@@ -248,6 +376,30 @@ function closeBook(){document.getElementById('mbook').classList.remove('open')}
 function closeBookBg(e){if(e.target===document.getElementById('mbook'))closeBook()}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeVid();closeBook()}});
 window.addEventListener('load',function(){[document.getElementById('vp1'),document.getElementById('vp2')].forEach(function(v){if(v)v.currentTime=1})});
+
+
+function openModal() {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImg");
+  
+  modalImg.src = "comfort.png"; 
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden"; // Запрещаем скролл сайта
+}
+
+function closeModal() {
+  const modal = document.getElementById("imageModal");
+  modal.classList.remove("show");
+  document.body.style.overflow = ""; // Возвращаем скролл сайта
+}
+
+// Закрытие на кнопку Esc
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+});
+
 </script>
 </body>
 </html>
