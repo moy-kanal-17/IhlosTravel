@@ -1,4 +1,4 @@
-```<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
@@ -299,55 +299,8 @@
       color: var(--text-muted);
       font-size: 0.85rem;
     }
-    .modal .form-field { margin-bottom: 20px; }
-    .modal .form-field label {
-      display: block; font-size: 0.8rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: 8px;
-    }
-    .modal .form-field input, .modal .form-field select {
-      width: 100%; padding: 14px 18px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      font-family: 'DM Sans', sans-serif; font-size: 1rem;
-      color: var(--white); transition: all 0.3s;
-    }
-    .modal .form-field input:focus, .modal .form-field select:focus {
-      outline: none; border-color: var(--gold);
-      background: rgba(212, 175, 55, 0.05);
-    }
-    .modal .form-field select {
-      cursor: pointer;
-    }
-    .modal .form-field select option {
-      background: var(--dark);
-    }
 
-    .btn-submit {
-      width: 100%;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--dark); border: none; padding: 18px;
-      border-radius: 50px;
-      font-family: 'DM Sans', sans-serif; font-weight: 700;
-      font-size: 1rem; cursor: pointer; margin-top: 16px;
-      letter-spacing: 0.05em; transition: all 0.3s;
-      box-shadow: 0 10px 40px var(--gold-glow);
-    }
-    .btn-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 50px var(--gold-glow);
-    }
-
-    .modal-note {
-      text-align: center; font-size: 0.85rem; color: var(--text-muted);
-      margin-top: 20px;
-    }
-    .modal-note a { color: var(--gold); text-decoration: none; }
-    .modal-note a:hover { text-decoration: underline; }
-
-    /* ═════════════════════════════ RESPONSIVE ═════════════════════════════ */
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
       .nav-links { display: none; }
       .hero { min-height: 50vh; padding: 80px 20px 40px; }
       .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -360,9 +313,6 @@
       .product-grid { grid-template-columns: 1fr; }
     }
   </style>
-  <meta property="og:image" content="https://bolt.new/static/og_default.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
 <body>
 
@@ -372,23 +322,12 @@
     <a href="#" class="nav-logo">Ihlos <span>Travel</span></a>
     <ul class="nav-links">
       <li><a href="#packages">Paketlar</a></li>
-      <li><a href="#timeline">Jarayon</a></li>
-      <li><a href="#gallery">Galereya</a></li>
+      <li><a href="#why">Nima Uchun Biz</a></li>
       <li><a href="#contact">Bog'lanish</a></li>
       <li><a href="#contact" class="nav-cta">Bron Qilish</a></li>
     </ul>
   </div>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#destinations">Ziyoratgohlar</a>
-  <a href="#packages">Paketlar</a>
-  <a href="#timeline">Jarayon</a>
-  <a href="#gallery">Galereya</a>
-  <a href="#contact">Bog'lanish</a>
-  <a href="#packages" class="nav-cta" style="border-radius: 50px; padding: 12px 32px; margin-top: 20px;">Bron Qilish</a>
-</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -411,244 +350,135 @@
 
   <div class="product-grid">
 
-    <!-- Package: 10 kun Comfort -->
-    <div class="pkg-card featured">
-      <div class="pkg-badge">Eng ko'p tanlov</div>
-      <div class="pkg-img">
-        <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80" alt="Umra Comfort"/>
-        <div class="pkg-img-overlay"></div>
-      </div>
-      <div class="pkg-body">
-        <div class="pkg-days">
-          <div class="pkg-day-chip">
+    <!-- Standart -->
+    <a href="standart.html" class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80" alt="Standart">
+      <div class="product-body">
+        <span class="product-badge">Mashhur</span>
+        <div class="product-title">Standart</div>
+        <div class="product-sub">3 kun Madina + 11 kun Makka</div>
+        <div class="product-price">$1,100</div>
+        <div class="product-price-note">dan boshlab / kishi</div>
+        <div class="product-meta">
+          <span class="product-chip">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            4 kun Madina
-          </div>
-          <div class="pkg-day-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            6 kun Makka
-          </div>
+            14 kun
+          </span>
+          <span class="product-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-9h18v9h2V7c0-1.1-.9-2-2-2z"/></svg>
+            2 mehmonxona
+          </span>
         </div>
-        <h3>10 kun Comfort</h3>
-        <div class="pkg-meta">
-          <div class="pkg-meta-item">
-            <label>Madina Mehmonxonasi</label>
-            <span>Nusk al Hijra</span>
-          </div>
-          <div class="pkg-meta-item">
-            <label>Makka Mehmonxonasi</label>
-            <span>Taj Park</span>
-          </div>
-        </div>
-
-        <div class="pkg-prices">
-          <div class="pkg-price-row">
-            <span>4 kishi xonada</span>
-            <span>$1100</span>
-          </div>
-          <div class="pkg-price-row">
-            <span>3 kishi xonada</span>
-            <span>$1150</span>
-          </div>
-          <div class="pkg-price-row">
-            <span>2 kishi xonada</span>
-            <span>$1200</span>
-          </div>
-        </div>
-
-        <div class="pkg-includes">
-          <h4>Paketga kiritilgan</h4>
-          <div class="pkg-include-list">
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Ekskursiyalar
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Kuniga 2-3 mahal taom
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Viza
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Guruh rahbari
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Shifokor
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Sovg'alar
-            </div>
-          </div>
-        </div>
-
-        <div class="pkg-dates">
-          <h4>Joylar mavkun</h4>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 18.06.2025</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 25.06.2025</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 02.07.2025</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 09.07.2025</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 16.07.2025</li>
-          </ul>
-        </div>
-
-        <div class="pkg-divider"></div>
-        <div class="pkg-footer">
-          <a href="tel:+998773094442" class="pkg-phone">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.72 12 19.79 19.79 0 011.64 3.62a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            +99877 309 44 42
-          </a>
-          <button class="btn-book" onclick="openModal('10 kun Comfort', '4 kun Madina + 6 kun Makka', 'Taj Park')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            Bron Qilish
-          </button>
+        <div class="product-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Batafsil
         </div>
       </div>
-    </div>
+    </a>
 
-    <!-- Package: Standart+ -->
-    <div class="pkg-card">
-      <div class="pkg-img">
-        <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80" alt="Umra Standart+"/>
-        <div class="pkg-img-overlay"></div>
-      </div>
-      <div class="pkg-body">
-        <div class="pkg-days">
-          <div class="pkg-day-chip">
+    <!-- Standart+ -->
+    <a href="standart-plus.html" class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80" alt="Standart+">
+      <div class="product-body">
+        <span class="product-badge">Yaxshi narxdagi</span>
+        <div class="product-title">Standart+</div>
+        <div class="product-sub">3 kun Madina + 11 kun Makka</div>
+        <div class="product-price">$1,050</div>
+        <div class="product-price-note">dan boshlab / kishi</div>
+        <div class="product-meta">
+          <span class="product-chip">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            3 kun Madina
-          </div>
-          <div class="pkg-day-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            11 kun Makka
-          </div>
+            14 kun
+          </span>
+          <span class="product-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-9h18v9h2V7c0-1.1-.9-2-2-2z"/></svg>
+            Viza + Zam-Zam
+          </span>
         </div>
-        <h3>Standart+ 14 kun</h3>
-        <div class="pkg-meta">
-          <div class="pkg-meta-item">
-            <label>Madina Mehmonxonasi</label>
-            <span>Huda Taiba (100m)</span>
-          </div>
-          <div class="pkg-meta-item">
-            <label>Makka Mehmonxonasi</label>
-            <span>Mahd Al Resala (2km)</span>
-          </div>
-        </div>
-
-        <div class="pkg-includes">
-          <h4>Paketga kiritilgan</h4>
-          <div class="pkg-include-list">
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Ekskursiyalar
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Kuniga 2-3 mahal taom
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Viza
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Guruh rahbari
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Shifokor
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              5L Zam-Zam + Sovg'alar
-            </div>
-          </div>
-        </div>
-
-        <div class="pkg-divider"></div>
-        <div class="pkg-footer">
-          <a href="tel:+998773064442" class="pkg-phone">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.72 12 19.79 19.79 0 011.64 3.62a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            +99877 306 44 42
-          </a>
-          <button class="btn-book" onclick="openModal('Standart+ 14 kun', '3 kun Madina + 11 kun Makka', 'Mahd Al Resala')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            Bron Qilish
-          </button>
+        <div class="product-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Batafsil
         </div>
       </div>
-    </div>
+    </a>
 
-    <!-- Package: Premium -->
-    <div class="pkg-card">
-      <div class="pkg-img">
-        <img src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?w=600&q=80" alt="Umra Premium"/>
-        <div class="pkg-img-overlay"></div>
-      </div>
-      <div class="pkg-body">
-        <div class="pkg-days">
-          <div class="pkg-day-chip">
+    <!-- Comfort -->
+    <a href="comfort.html" class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?w=600&q=80" alt="Comfort">
+      <div class="product-body">
+        <span class="product-badge" style="background:rgba(212,175,55,0.2);color:var(--gold-light);">Eng ko'p tanlangan</span>
+        <div class="product-title">Comfort</div>
+        <div class="product-sub">4 kun Madina + 6 kun Makka</div>
+        <div class="product-price">$1,100</div>
+        <div class="product-price-note">dan boshlab / kishi</div>
+        <div class="product-meta">
+          <span class="product-chip">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            7 kun Madina
-          </div>
-          <div class="pkg-day-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            10 kun Makka
-          </div>
+            10 kun
+          </span>
+          <span class="product-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-9h18v9h2V7c0-1.1-.9-2-2-2z"/></svg>
+            Shifokor
+          </span>
         </div>
-        <h3>Umra Premium</h3>
-        <div class="pkg-meta">
-          <div class="pkg-meta-item">
-            <label>Madina Mehmonxonasi</label>
-            <span>Anwar Al-Madinah</span>
-          </div>
-          <div class="pkg-meta-item">
-            <label>Makka Mehmonxonasi</label>
-            <span>Hilton Makka</span>
-          </div>
-        </div>
-
-        <div class="pkg-includes">
-          <h4>Paketga kiritilgan</h4>
-          <div class="pkg-include-list">
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Premium Ekskursiyalar
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Kundalik bufet
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Viza
-            </div>
-            <div class="pkg-include-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              VIP Guruh rahbari
-            </div>
-          </div>
-        </div>
-
-        <div class="pkg-divider"></div>
-        <div class="pkg-footer">
-          <a href="tel:+998773094442" class="pkg-phone">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.72 12 19.79 19.79 0 011.64 3.62a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            +99877 309 44 42
-          </a>
-          <button class="btn-book" onclick="openModal('Umra Premium', '7 kun Madina + 10 kun Makka', 'Hilton Makka')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            Bron Qilish
-          </button>
+        <div class="product-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Batafsil
         </div>
       </div>
-    </div>
+    </a>
 
+    <!-- Luxury -->
+    <a href="luxury.html" class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=600&q=80" alt="Luxury">
+      <div class="product-body">
+        <span class="product-badge" style="background:rgba(180,140,255,0.12);color:#c4a5ff;">Premium</span>
+        <div class="product-title">Luxury</div>
+        <div class="product-sub">7 kun Madina + 10 kun Makka</div>
+        <div class="product-price">$1,800</div>
+        <div class="product-price-note">dan boshlab / kishi</div>
+        <div class="product-meta">
+          <span class="product-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            17 kun
+          </span>
+          <span class="product-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-9h18v9h2V7c0-1.1-.9-2-2-2z"/></svg>
+            Hilton Makka
+          </span>
+        </div>
+        <div class="product-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Batafsil
+        </div>
+      </div>
+    </a>
+
+    <!-- Individual -->
+    <a href="individual.html" class="product-card">
+      <img class="product-img" src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80" alt="Individual">
+      <div class="product-body">
+        <span class="product-badge" style="background:rgba(45,106,79,0.2);color:#5ecf8a;">Moslashuvchan</span>
+        <div class="product-title">Individual</div>
+        <div class="product-sub">Siz tanlaysiz — kunlar va mehmonxonalar</div>
+        <div class="product-price">Murojaat</div>
+        <div class="product-price-note">narxni bilish uchun</div>
+        <div class="product-meta">
+          <span class="product-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Moslashuvchan
+          </span>
+          <span class="product-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-9h18v9h2V7c0-1.1-.9-2-2-2z"/></svg>
+            VIP xizmat
+          </span>
+        </div>
+        <div class="product-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Batafsil
+        </div>
+      </div>
+    </a>
 
   </div>
 </section>
@@ -685,33 +515,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.72 12a19.79 19.79 0 01-3.08-8.38 2 2 0 012-2.18h3a2 2 0 012 1.72 9.19 9.19 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 9.19 9.19 0 002.81.7 2 2 0 011.72 2v3z"/></svg>
       </div>
       <h4>24/7 Qo'llab-Quvvatlash</h4>
-      <p>Safar davomida istalgan vaqtda bizga murojaat qilishingiz mumkin. Biz doimo yoningizda.</p>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section class="gallery fade-section" id="gallery">
-  <div style="text-align: center; margin-bottom: 40px;">
-    <div class="section-label" style="justify-content: center;">Muqaddas Lahzalar</div>
-    <div class="section-title">Safar <span>Galereya</span>si</div>
-  </div>
-
-  <div class="gallery-grid">
-    <div class="g-item g1">
-      <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=1000&q=80" alt="Ka'ba kechasi"/>
-    </div>
-    <div class="g-item">
-      <img src="people2.jpg" alt="Masjid Nabavi"/>
-    </div>
-    <div class="g-item">
-      <img src="people.jpg" alt="Umra ziyoratchilar"/>
-    </div>
-    <div class="g-item">
-      <img src="kaba.jpg" alt="Masjid al-Haram"/>
-    </div>
-    <div class="g-item">
-      <img src="masjidichi.jpg" alt="Masjid ichi"/>
+      <p>Safar davomida istalgan vaqtda yordam.</p>
     </div>
   </div>
 </section>
@@ -736,351 +540,6 @@
 <footer>
   <p>© 2025 Ihlos Travel. Barcha huquqlar himoyalangan.</p>
 </footer>
-
-<!-- MODAL -->
-<div class="modal-backdrop" id="modal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div class="modal-logo">
-      <img src="ihlostravelicon.jpg" alt="Logo" onerror="this.style.display='none'"/>
-      <span>Ihlos <em>Travel</em></span>
-    </div>
-    <h2>Bronlash</h2>
-    <p class="modal-pkg-name" id="modal-pkg-name">Paket: —</p>
-
-    <div class="form-row">
-      <div class="form-field">
-        <label>Ism</label>
-        <input type="text" id="m-name" placeholder="Ismingiz"/>
-      </div>
-      <div class="form-field">
-        <label>Familiya</label>
-        <input type="text" id="m-surname" placeholder="Familiyangiz"/>
-      </div>
-    </div>
-    <div class="form-field">
-      <label>Telefon</label>
-      <input type="tel" id="m-phone" placeholder="+998"/>
-    </div>
-    <div class="form-row">
-      <div class="form-field">
-        <label>Madina (kunlar)</label>
-        <input type="number" id="m-madina" min="1" max="30" placeholder="kun"/>
-      </div>
-      <div class="form-field">
-        <label>Makka (kunlar)</label>
-        <input type="number" id="m-makka" min="1" max="30" placeholder="kun"/>
-      </div>
-    </div>
-    <div class="form-field">
-      <label>Mehmonxona</label>
-      <input type="text" id="m-hotel" placeholder="Mehmonxona nomi"/>
-    </div>
-    <div class="form-field">
-      <label>Jo'nash sanasi</label>
-      <input type="date" id="m-date"/>
-    </div>
-    <div class="form-field">
-      <label>Guruh soni</label>
-      <select id="m-group">
-        <option>1 kishi</option>
-        <option>2 kishi</option>
-        <option selected>3 kishi</option>
-        <option>4 kishi</option>
-        <option>5+ kishi</option>
-      </select>
-    </div>
-    <button class="btn-submit" onclick="submitBooking()">Bron Qilish</button>
-    <p class="modal-note">Yoki to'g'ridan-to'g'ri qo'ng'iroq qiling: <a href="tel:+998773094442">+99877 309 44 42</a></p>
-  </div>
-</div>
-
-<script>
-  // ═════════════════════════════ SCROLL PROGRESS ═════════════════════════════
-  window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    document.getElementById('progress-bar').style.width = scrolled + '%';
-
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    if (winScroll > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
-
-  // ═════════════════════════════ PARTICLES ═════════════════════════════
-  const canvas = document.getElementById('particles');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  let mouseX = 0, mouseY = 0;
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-
-  class Particle {
-    constructor() {
-      this.reset();
-    }
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 2 + 0.5;
-      this.speedX = (Math.random() - 0.5) * 0.3;
-      this.speedY = (Math.random() - 0.5) * 0.3;
-      this.opacity = Math.random() * 0.5 + 0.1;
-    }
-    update() {
-      this.x += this.speedX + (mouseX - canvas.width/2) * 0.00005;
-      this.y += this.speedY + (mouseY - canvas.height/2) * 0.00005;
-
-      if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-        this.reset();
-      }
-    }
-    draw() {
-      ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  for (let i = 0; i < 60; i++) {
-    particles.push(new Particle());
-  }
-
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      p.update();
-      p.draw();
-    });
-    requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  // ═════════════════════════════ FADE SECTIONS ═════════════════════════════
-  const fadeSections = document.querySelectorAll('.fade-section');
-  const observerOptions = { threshold: 0.15 };
-
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-
-  fadeSections.forEach(section => fadeObserver.observe(section));
-
-  // ═════════════════════════════ STATS COUNTER ═════════════════════════════
-  const statsItems = document.querySelectorAll('.stat-item');
-  let statsAnimated = false;
-
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !statsAnimated) {
-        statsAnimated = true;
-        animateStats();
-      }
-    });
-  }, { threshold: 0.5 });
-
-  statsItems.forEach(item => statsObserver.observe(item));
-
-  function animateStats() {
-    statsItems.forEach((item, index) => {
-      setTimeout(() => {
-        item.classList.add('visible');
-      }, index * 150);
-    });
-
-    document.querySelectorAll('.stat-num').forEach(num => {
-      const target = parseInt(num.dataset.target);
-      const suffix = num.dataset.suffix || '';
-      const duration = 2000;
-      const start = performance.now();
-
-      function update(currentTime) {
-        const elapsed = currentTime - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeProgress = 1 - Math.pow(1 - progress, 4);
-        const current = Math.floor(easeProgress * target);
-        num.textContent = current.toLocaleString() + suffix;
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        }
-      }
-      requestAnimationFrame(update);
-    });
-  }
-
-  // ═════════════════════════════ TIMELINE PROGRESS ═════════════════════════════
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  const timelineProgress = document.getElementById('timeline-progress');
-
-  const timelineObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, { threshold: 0.5 });
-
-  timelineItems.forEach(item => timelineObserver.observe(item));
-
-  function updateTimelineProgress() {
-    const container = document.querySelector('.timeline-container');
-    if (!container) return;
-
-    const rect = container.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    const containerTop = rect.top;
-    const containerHeight = rect.height;
-
-    let progress = 0;
-    if (containerTop < windowHeight) {
-      progress = Math.min(Math.max((windowHeight - containerTop - 200) / containerHeight, 0), 1) * 100;
-    }
-
-    timelineProgress.style.height = progress + '%';
-  }
-
-  window.addEventListener('scroll', updateTimelineProgress);
-
-  // ═════════════════════════════ CALCULATOR ═════════════════════════════
-  const peopleSlider = document.getElementById('people-slider');
-  const daysSlider = document.getElementById('days-slider');
-  const peopleValue = document.getElementById('people-value');
-  const daysValue = document.getElementById('days-value');
-  const calcPrice = document.getElementById('calc-price');
-
-  const basePrices = { 1: 1200, 2: 1200, 3: 1150, 4: 1100, 5: 1100, 6: 1100 };
-  const dailyRate = 35;
-
-  function updateCalculator() {
-    const people = parseInt(peopleSlider.value);
-    const days = parseInt(daysSlider.value);
-
-    peopleValue.textContent = people + ' kishi';
-    daysValue.textContent = days + ' kun';
-
-    const basePrice = basePrices[people] || 1100;
-    const total = basePrice + ((days - 10) * dailyRate);
-    calcPrice.textContent = '$' + total.toLocaleString();
-  }
-
-  peopleSlider.addEventListener('input', updateCalculator);
-  daysSlider.addEventListener('input', updateCalculator);
-
-  // ═════════════════════════════ MOBILE MENU ═════════════════════════════
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileLinks = mobileMenu.querySelectorAll('a');
-
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-  });
-
-  mobileLinks.forEach((link, i) => {
-    link.style.transitionDelay = (i * 0.1) + 's';
-  });
-
-  mobileMenu.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  });
-
-  // ═════════════════════════════ MODAL ═════════════════════════════
-  function openModal(pkgName, days, hotel) {
-    const modal = document.getElementById('modal');
-    document.getElementById('modal-pkg-name').textContent = 'Paket: ' + pkgName;
-
-    const parts = days.split('+');
-    if (parts.length === 2) {
-      document.getElementById('m-madina').value = parts[0].trim().split(' ')[0];
-      document.getElementById('m-makka').value = parts[1].trim().split(' ')[0];
-    }
-    document.getElementById('m-hotel').value = hotel || '';
-
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    document.getElementById('modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.getElementById('modal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-
-  function submitBooking() {
-    alert('✅ Broningiz qabul qilindi!\n\nTez orada siz bilan bog\'lanamiz.\n\nIhlos Travel:\n+99877 309 44 42\n+99877 306 44 42');
-    closeModal();
-  }
-
-  // ═════════════════════════════ 3D TILT EFFECT ═════════════════════════════
-  const tiltCards = document.querySelectorAll('[data-tilt]');
-
-  tiltCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
-    });
-  });
-
-  // ═════════════════════════════ SMOOTH SCROLL ═════════════════════════════
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  // ═════════════════════════════ ESCAPE KEY CLOSE MODAL ═════════════════════════════
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeModal();
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  });
-</script>
 
 </body>
 </html>
