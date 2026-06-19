@@ -1,0 +1,17 @@
+videosAll.txt = (it about of types of video ,which you would use in code)
+
+
+video1.mp4 = About How in umra and temperatures
+video1.jpg = thumblebort for video1.mp4
+
+video2.mp4 = About How in Madina
+video2.jpg = thumblebort for video2.mp4
+
+
+video3.mp4 = About Hotel in Madina
+video3.jpg =  unneeded ,because it in it
+
+
+StandartKabaHotel.MP4 = about hotel in kaba in type of standart (level of ticket)
+
+StandartMadinaHotel.MP4 = about hotel in Madina in type of standart (level of ticket)

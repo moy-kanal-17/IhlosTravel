@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standart Paket — Umra Sayohati</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --gold-2: #C49A20;
+      --gold-pale: #FDF5DC;
+      --gold-mid: #F0D778;
+      --dark: #0C0B09;
+      --surface: #161410;
+      --card: #1E1B14;
+      --border: rgba(212,175,55,0.18);
+      --border-soft: rgba(255,255,255,0.07);
+      --text: #F2EDD6;
+      --muted: #8B856E;
+      --green-deep: #0D2B1E;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',sans-serif;
+      background:var(--dark);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+    img,video{max-width:100%;display:block}
+
+    /* ── TOPBAR ── */
+    .topbar{
+      position:sticky;top:0;z-index:90;
+      background:rgba(12,11,9,0.92);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+      padding:12px 20px;
+      display:flex;align-items:center;gap:12px;
+    }
+    .back-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      color:var(--gold);font-weight:600;font-size:0.9rem;
+      padding:7px 14px;border-radius:8px;
+      background:rgba(212,175,55,0.08);
+      border:1px solid var(--border);
+      transition:all .25s;
+    }
+    .back-btn:hover{background:rgba(212,175,55,0.15);transform:translateX(-3px)}
+    .back-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+    .topbar-title{font-weight:700;font-size:1rem;color:var(--text);opacity:.7}
+
+    /* ── VIDEOS HERO ── */
+    .videos-hero{padding:28px 20px 0;max-width:1100px;margin:0 auto}
+    .videos-hero-label{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:0.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--gold);margin-bottom:14px;
+    }
+    .videos-hero-label span{
+      display:inline-block;width:6px;height:6px;border-radius:50%;
+      background:var(--gold);animation:pulse 2s infinite;
+    }
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    .video-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    @media(max-width:600px){.video-row{grid-template-columns:1fr}}
+
+    .vcard{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:transform .2s,box-shadow .2s;
+    }
+    .vcard:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.5)}
+    .vcard:active{transform:scale(.98)}
+
+    .vthumb{
+      position:relative;
+      aspect-ratio:16/9;
+      background:linear-gradient(135deg,#1a1710,#0e0d0a);
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;
+    }
+    .vthumb video{
+      position:absolute;inset:0;
+      width:100%;height:100%;object-fit:cover;
+      opacity:.55;pointer-events:none;
+    }
+    .vthumb-overlay{
+      position:relative;z-index:2;
+      display:flex;align-items:center;justify-content:center;
+      flex-direction:column;gap:10px;text-align:center;padding:16px;
+    }
+    .play-ring{
+      width:56px;height:56px;border-radius:50%;
+      background:rgba(212,175,55,0.15);
+      border:2px solid rgba(212,175,55,0.5);
+      display:flex;align-items:center;justify-content:center;
+      transition:all .2s;
+    }
+    .vcard:hover .play-ring{background:rgba(212,175,55,0.25);border-color:var(--gold);transform:scale(1.08)}
+    .play-ring svg{width:22px;height:22px;fill:var(--gold);margin-left:3px}
+    .vthumb-city{
+      font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      color:rgba(212,175,55,.7);
+    }
+    .vinfo{
+      padding:12px 16px 14px;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .vinfo-name{font-weight:600;font-size:0.92rem;color:var(--text)}
+    .vinfo-tag{
+      font-size:0.75rem;color:var(--muted);margin-top:2px;
+    }
+    .vbadge{
+      font-size:0.7rem;font-weight:700;
+      padding:4px 10px;border-radius:999px;
+      background:rgba(212,175,55,0.1);
+      border:1px solid var(--border);
+      color:var(--gold);white-space:nowrap;
+    }
+
+    /* ── VIDEO MODAL ── */
+    .vmodal-bg{
+      display:none;position:fixed;inset:0;z-index:200;
+      background:rgba(0,0,0,.88);backdrop-filter:blur(8px);
+      align-items:center;justify-content:center;padding:20px;
+    }
+    .vmodal-bg.open{display:flex}
+    .vmodal-inner{
+      position:relative;width:100%;max-width:860px;
+      background:#000;border-radius:16px;overflow:hidden;
+      border:1px solid var(--border);
+      box-shadow:0 30px 80px rgba(0,0,0,.7);
+    }
+    .vmodal-inner video{width:100%;display:block;max-height:70vh;object-fit:contain;background:#000}
+    .vmodal-close{
+      position:absolute;top:12px;right:12px;z-index:10;
+      width:34px;height:34px;border-radius:50%;
+      background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.15);
+      color:#fff;font-size:1rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:background .2s;
+    }
+    .vmodal-close:hover{background:rgba(255,255,255,.15)}
+    .vmodal-title{
+      padding:12px 16px;
+      font-weight:600;font-size:0.9rem;color:var(--text);
+      background:var(--card);border-top:1px solid var(--border);
+    }
+    .vmodal-fallback{
+      padding:40px 24px;text-align:center;
+      display:none;
+    }
+    .vmodal-fallback p{color:var(--muted);font-size:0.9rem;margin-bottom:16px}
+    .vmodal-fallback a{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 20px;border-radius:10px;
+      background:rgba(212,175,55,0.12);border:1px solid var(--border);
+      color:var(--gold);font-weight:600;font-size:0.9rem;
+      transition:background .2s;
+    }
+    .vmodal-fallback a:hover{background:rgba(212,175,55,0.22)}
+
+    /* ── PAGE LAYOUT ── */
+    .page{max-width:1100px;margin:0 auto;padding:0 20px 60px}
+
+    /* ── HERO BLOCK ── */
+    .hero{padding:32px 0 24px;border-bottom:1px solid var(--border-soft)}
+    .hero-eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:0.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--gold);margin-bottom:12px;
+    }
+    .hero-eyebrow::before{content:'';display:inline-block;width:20px;height:2px;background:var(--gold);border-radius:1px}
+    .hero h1{
+      font-size:clamp(1.7rem,5vw,2.8rem);font-weight:800;
+      color:var(--text);letter-spacing:-.02em;margin-bottom:8px;
+      line-height:1.1;
+    }
+    .hero h1 em{
+      font-style:normal;
+      color:var(--gold);
+    }
+    .hero-sub{color:var(--muted);font-size:0.97rem;max-width:520px}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .tag{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:0.78rem;font-weight:600;
+      padding:5px 12px;border-radius:999px;
+      background:rgba(212,175,55,0.07);
+      border:1px solid var(--border);
+      color:var(--gold);
+    }
+    .tag svg{width:13px;height:13px;fill:currentColor}
+
+    /* ── SECTION HEADING ── */
+    .sec-head{
+      display:flex;align-items:center;gap:10px;
+      margin:32px 0 16px;
+    }
+    .sec-head-icon{
+      width:36px;height:36px;border-radius:10px;
+      background:rgba(212,175,55,0.1);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    }
+    .sec-head-icon svg{width:18px;height:18px;fill:var(--gold)}
+    .sec-head h2{font-size:1.05rem;font-weight:700;color:var(--text)}
+    .sec-head p{font-size:0.8rem;color:var(--muted);margin-top:1px}
+
+    /* ── GRID ── */
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+    @media(max-width:700px){.grid2{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}}
+    @media(max-width:420px){.grid3{grid-template-columns:1fr}}
+
+    /* ── CARDS ── */
+    .card{
+      background:var(--card);
+      border:1px solid var(--border-soft);
+      border-radius:16px;
+      padding:20px;
+    }
+    .card-label{
+      font-size:0.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:10px;
+    }
+
+    /* ── PRICE CARDS ── */
+    .price-card{
+      background:var(--card);
+      border:1px solid var(--border-soft);
+      border-radius:16px;
+      padding:20px;
+      display:flex;flex-direction:column;gap:6px;
+      transition:border-color .2s;
+    }
+    .price-card.featured{
+      border-color:rgba(212,175,55,0.4);
+      background:linear-gradient(145deg,#1e1b14,#1a1812);
+    }
+    .price-card .pax{
+      font-size:0.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;
+    }
+    .price-card .amount{
+      font-size:1.8rem;font-weight:800;color:var(--gold);letter-spacing:-.03em;
+    }
+    .price-card .amount span{font-size:1rem;font-weight:500;color:var(--muted)}
+    .price-card .desc{font-size:0.8rem;color:var(--muted)}
+    .price-card .best-badge{
+      display:inline-block;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+      padding:3px 9px;border-radius:999px;
+      background:rgba(212,175,55,0.15);border:1px solid var(--border);
+      color:var(--gold);margin-bottom:4px;width:fit-content;
+    }
+
+    /* ── HOTEL CARD ── */
+    .hotel-card{
+      background:var(--card);border:1px solid var(--border-soft);border-radius:16px;overflow:hidden;
+    }
+    .hotel-map-placeholder{
+      height:120px;
+      background:linear-gradient(135deg,var(--green-deep),#0a1f15);
+      display:flex;align-items:center;justify-content:center;
+      border-bottom:1px solid var(--border-soft);
+      position:relative;overflow:hidden;
+    }
+    .hotel-map-placeholder::after{
+      content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(0deg,rgba(212,175,55,.03) 0,rgba(212,175,55,.03) 1px,transparent 1px,transparent 28px),
+                repeating-linear-gradient(90deg,rgba(212,175,55,.03) 0,rgba(212,175,55,.03) 1px,transparent 1px,transparent 28px);
+    }
+    .hotel-pin{
+      width:40px;height:40px;border-radius:50%;
+      background:rgba(212,175,55,.15);border:2px solid var(--gold);
+      display:flex;align-items:center;justify-content:center;position:relative;z-index:1;
+    }
+    .hotel-pin svg{width:18px;height:18px;fill:var(--gold)}
+    .hotel-body{padding:16px}
+    .hotel-name{font-weight:700;font-size:0.97rem;color:var(--text);margin-bottom:4px}
+    .hotel-city{font-size:0.75rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+    .hotel-dist{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:0.78rem;color:var(--muted);
+      background:rgba(255,255,255,.05);
+      padding:4px 10px;border-radius:999px;border:1px solid var(--border-soft);
+    }
+    .hotel-dist svg{width:12px;height:12px;fill:var(--gold)}
+
+    /* ── INCLUDE LIST ── */
+    .inc-list{list-style:none;display:flex;flex-direction:column;gap:0}
+    .inc-list li{
+      display:flex;align-items:center;gap:10px;
+      padding:10px 0;border-bottom:1px solid var(--border-soft);
+      font-size:0.9rem;color:var(--text);
+    }
+    .inc-list li:last-child{border-bottom:none}
+    .inc-list li .chk{
+      width:22px;height:22px;border-radius:6px;
+      background:rgba(212,175,55,0.1);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    }
+    .inc-list li .chk svg{width:12px;height:12px;stroke:var(--gold);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+    /* ── ZIYORAT ── */
+    .ziy-item{
+      display:flex;align-items:center;gap:10px;
+      padding:10px 12px;border-radius:10px;
+      background:rgba(255,255,255,.03);border:1px solid var(--border-soft);
+      font-size:0.87rem;color:var(--text);
+    }
+    .ziy-item::before{content:'◆';color:var(--gold);font-size:0.5rem;flex-shrink:0}
+
+    /* ── ROUTE TIMELINE ── */
+    .timeline{display:flex;flex-direction:column;gap:0}
+    .tl-item{
+      display:flex;gap:14px;
+    }
+    .tl-left{
+      display:flex;flex-direction:column;align-items:center;
+      flex-shrink:0;width:36px;
+    }
+    .tl-dot{
+      width:10px;height:10px;border-radius:50%;border:2px solid var(--gold);
+      background:var(--dark);flex-shrink:0;margin-top:4px;
+    }
+    .tl-line{flex:1;width:2px;background:var(--border);margin:4px 0}
+    .tl-content{padding-bottom:20px;flex:1}
+    .tl-title{font-weight:700;font-size:0.92rem;color:var(--text)}
+    .tl-desc{font-size:0.82rem;color:var(--muted);margin-top:2px}
+    .tl-badge{
+      display:inline-block;margin-top:6px;
+      font-size:0.72rem;font-weight:700;
+      padding:3px 10px;border-radius:999px;
+      background:rgba(212,175,55,0.08);border:1px solid var(--border);
+      color:var(--gold);
+    }
+
+    /* ── CTA ── */
+    .cta-wrap{
+      margin:36px 0 0;
+      background:var(--card);
+      border:1px solid rgba(212,175,55,0.25);
+      border-radius:20px;
+      padding:32px 28px;
+      text-align:center;
+      position:relative;overflow:hidden;
+    }
+    .cta-wrap::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at 50% -20%,rgba(212,175,55,0.08),transparent 65%);
+      pointer-events:none;
+    }
+    .cta-wrap h2{font-size:1.4rem;font-weight:800;color:var(--text);margin-bottom:6px}
+    .cta-wrap p{color:var(--muted);font-size:0.9rem;margin-bottom:22px}
+    .phones-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .phone-pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 18px;border-radius:12px;
+      background:rgba(255,255,255,.04);border:1px solid var(--border);
+      color:var(--gold);font-weight:700;font-size:0.95rem;
+      transition:background .2s;
+    }
+    .phone-pill:hover{background:rgba(212,175,55,.1)}
+    .phone-pill svg{width:16px;height:16px;fill:currentColor}
+
+    .btn-cta{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:13px 30px;border-radius:12px;
+      background:var(--gold);color:#0C0B09;
+      font-weight:800;font-size:1rem;border:none;cursor:pointer;
+      transition:transform .2s,background .2s;
+    }
+    .btn-cta:hover{background:var(--gold-mid);transform:translateY(-2px)}
+    .btn-cta svg{width:18px;height:18px;fill:currentColor}
+
+    /* ── FOOTER ── */
+    footer{
+      border-top:1px solid var(--border-soft);
+      padding:28px 20px;text-align:center;
+      color:var(--muted);font-size:0.83rem;
+      max-width:1100px;margin:0 auto;
+    }
+
+    /* ── DIVIDER ── */
+    .divider{height:1px;background:var(--border-soft);margin:10px 0}
+
+    /* ── MODAL BOOK ── */
+    .modal-bg{
+      display:none;position:fixed;inset:0;z-index:300;
+      background:rgba(0,0,0,.8);backdrop-filter:blur(8px);
+      align-items:center;justify-content:center;padding:20px;
+    }
+    .modal-bg.open{display:flex}
+    .modal-box{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:20px;max-width:420px;width:100%;
+      padding:30px 26px;text-align:center;
+    }
+    .modal-box h3{font-size:1.2rem;font-weight:800;color:var(--gold);margin-bottom:8px}
+    .modal-box p{color:var(--muted);font-size:0.9rem;margin-bottom:18px}
+    .modal-phone{font-size:1.15rem;font-weight:800;color:var(--text);margin-bottom:6px}
+    .modal-close{
+      margin-top:16px;padding:9px 22px;border-radius:10px;
+      background:rgba(255,255,255,.06);border:1px solid var(--border-soft);
+      color:var(--text);font-weight:600;font-size:0.9rem;cursor:pointer;
+      transition:background .2s;
+    }
+    .modal-close:hover{background:rgba(255,255,255,.12)}
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <a href="index.html" class="back-btn">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Orqaga
+  </a>
+  <span class="topbar-title">Standart Paket</span>
+</div>
+
+<!-- VIDEOS AT TOP -->
+<div class="videos-hero">
+  <div class="videos-hero-label">
+    <span></span>
+    Mehmonxona ko'rinishlari
+  </div>
+  <div class="video-row">
+
+    <!-- Makka video -->
+    <div class="vcard" onclick="openVideo('StandartKabaHotel.MP4','Makka — Al Nasim Hotel')">
+      <div class="vthumb">
+        <video src="StandartKabaHotel.MP4" muted playsinline preload="metadata" id="vpreview1"></video>
+        <div class="vthumb-overlay">
+          <div class="play-ring">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="vthumb-city">Makka</div>
+        </div>
+      </div>
+      <div class="vinfo">
+        <div>
+          <div class="vinfo-name">Al Nasim Hotel</div>
+          <div class="vinfo-tag">Masjid al-Haromdan 1.2 km</div>
+        </div>
+        <div class="vbadge">▶ Video</div>
+      </div>
+    </div>
+
+    <!-- Madina video -->
+    <div class="vcard" onclick="openVideo('StandartMadinaHotel.MP4','Madina — Huda Taiba Hotel')">
+      <div class="vthumb">
+        <video src="StandartMadinaHotel.MP4" muted playsinline preload="metadata" id="vpreview2"></video>
+        <div class="vthumb-overlay">
+          <div class="play-ring">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="vthumb-city">Madina</div>
+        </div>
+      </div>
+      <div class="vinfo">
+        <div>
+          <div class="vinfo-name">Huda Taiba Hotel</div>
+          <div class="vinfo-tag">Masjid Nabaviydan 100 m</div>
+        </div>
+        <div class="vbadge">▶ Video</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="vmodal-bg" id="vmodal" onclick="closeVideo(event)">
+  <div class="vmodal-inner" onclick="event.stopPropagation()">
+    <button class="vmodal-close" onclick="closeVideoBtn()">✕</button>
+    <video id="vmodal-player" controls playsinline style="width:100%;display:block;max-height:70vh;object-fit:contain;background:#000"></video>
+    <div class="vmodal-fallback" id="vmodal-fallback">
+      <p>Video fayl topilmadi. Fayl brauzer bilan bir joyda bo'lishi kerak.</p>
+      <a id="vmodal-dl-link" href="#" download>
+        <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        Yuklab olish
+      </a>
+    </div>
+    <div class="vmodal-title" id="vmodal-label">—</div>
+  </div>
+</div>
+
+<!-- MAIN PAGE -->
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Umra Sayohati</div>
+    <h1>Standart<br><em>Paket</em></h1>
+    <p class="hero-sub">Toshkent — Jidda — Toshkent marshrutida 14 kunlik to'liq umra safari. Eng mashhur variant.</p>
+    <div class="hero-tags">
+      <span class="tag"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>14 kun jami</span>
+      <span class="tag"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>3 kun Madina</span>
+      <span class="tag"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>11 kun Makka</span>
+      <span class="tag">✦ Eng mashhur</span>
+    </div>
+  </div>
+
+  <!-- PRICES -->
+  <div class="sec-head">
+    <div class="sec-head-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.89 2.52 2.1h2.21c-.07-1.72-1.12-3.3-3.09-3.6V3H8.9v2.16c-1.74.36-3.15 1.45-3.15 3.23 0 2.19 2.09 3.09 4.55 3.78 2.46.68 2.99 1.62 2.99 2.58 0 .83-.68 1.75-2.7 1.75-2.04 0-2.84-.96-2.94-2.1H5.1c.1 2.03 1.52 3.15 3.8 3.45V21h2.5v-2.15c1.95-.37 3.5-1.5 3.5-3.4 0-2.36-2.2-3.18-4.1-3.55z"/></svg></div>
+    <div>
+      <h2>Narxlar</h2>
+      <p>Kishi soniga qarab</p>
+    </div>
+  </div>
+  <div class="grid3">
+    <div class="price-card">
+      <div class="pax">4 kishi</div>
+      <div class="amount">$1,100 <span>/ kishi</span></div>
+      <div class="desc">To'rt kishilik xonada</div>
+    </div>
+    <div class="price-card">
+      <div class="pax">3 kishi</div>
+      <div class="amount">$1,150 <span>/ kishi</span></div>
+      <div class="desc">Uch kishilik xonada</div>
+    </div>
+    <div class="price-card featured">
+      <div class="best-badge">★ Eng ko'p tanlov</div>
+      <div class="pax">2 kishi</div>
+      <div class="amount">$1,200 <span>/ kishi</span></div>
+      <div class="desc">Juft xonada</div>
+    </div>
+  </div>
+
+  <!-- ROUTE & HOTELS -->
+  <div class="grid2" style="margin-top:28px">
+
+    <!-- Route -->
+    <div class="card">
+      <div class="card-label">Yo'nalish</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-title">Toshkent → Jidda</div>
+            <div class="tl-desc">To'g'ri reys orqali</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-title">Madina</div>
+            <div class="tl-desc">Masjid Nabaviy, ziyoratlar</div>
+            <div class="tl-badge">3 kun</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-title">Makka</div>
+            <div class="tl-desc">Masjid al-Harom, Umra</div>
+            <div class="tl-badge">11 kun</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot" style="border-color:var(--muted)"></div></div>
+          <div class="tl-content" style="padding-bottom:0">
+            <div class="tl-title">Jidda → Toshkent</div>
+            <div class="tl-desc">Qaytish</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hotels -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="hotel-card">
+        <div class="hotel-map-placeholder">
+          <div class="hotel-pin"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-city">Madina</div>
+          <div class="hotel-name">Huda Taiba Hotel</div>
+          <div class="hotel-dist"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Masjid Nabaviydan 100 m</div>
+        </div>
+      </div>
+      <div class="hotel-card">
+        <div class="hotel-map-placeholder">
+          <div class="hotel-pin"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-city">Makka</div>
+          <div class="hotel-name">Al Nasim Hotel</div>
+          <div class="hotel-dist"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Masjid al-Haromdan 1.2 km</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INCLUDES -->
+  <div class="sec-head">
+    <div class="sec-head-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+    <div><h2>Narxga kiritilgan</h2><p>Hamma xizmatlar</p></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <ul class="inc-list">
+        <li><div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Kuniga 2–3 mahal taom</li>
+        <li><div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Elliy hujjati bepul</li>
+        <li><div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Tajribali ishchi guruh</li>
+      </ul>
+    </div>
+    <div class="card">
+      <ul class="inc-list">
+        <li><div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Shifokor xizmati 24/7</li>
+        <li><div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Transport (aeroport ↔ mehmonxona)</li>
+        <li><div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Ziyorat safarlar</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ZIYORATLAR -->
+  <div class="sec-head">
+    <div class="sec-head-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.5L18.5 20h-13L12 5.5zM12 10l-2.5 5h5L12 10z"/></svg></div>
+    <div><h2>Ziyorat joylari</h2><p>Qamrab olingan tarixiy manzillar</p></div>
+  </div>
+  <div class="grid3">
+    <div class="ziy-item">Qubo Masjidi</div>
+    <div class="ziy-item">Uxud tog'i</div>
+    <div class="ziy-item">Hurmon bog'i</div>
+    <div class="ziy-item">Quron bosmahonasi</div>
+    <div class="ziy-item">Qiblatayn Masjidi</div>
+    <div class="ziy-item">Ravza ziyorati</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <h2>Joyingizni band qiling</h2>
+    <p>Guruh joylari cheklangan — ertaroq murojaat qiling</p>
+    <button class="btn-cta" onclick="openBookModal()">
+      <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+      Bron qilish
+    </button>
+    <div class="phones-row">
+      <a href="tel:+998773094442" class="phone-pill">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        +99877 309 44 42
+      </a>
+      <a href="tel:+998773064442" class="phone-pill">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        +99877 306 44 42
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© Umra Sayohati — Barcha huquqlar himoyalangan</p>
+</footer>
+
+<!-- BOOK MODAL -->
+<div class="modal-bg" id="bookModal" onclick="closeBookModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <h3>Bron qilish</h3>
+    <p>Quyidagi raqamlarga qo'ng'iroq qiling yoki WhatsApp orqali yozing:</p>
+    <div class="modal-phone"><a href="tel:+998773094442" style="color:var(--gold)">+99877 309 44 42</a></div>
+    <div class="modal-phone"><a href="tel:+998773064442" style="color:var(--gold)">+99877 306 44 42</a></div>
+    <button class="modal-close" onclick="closeBookModal()">Yopish</button>
+  </div>
+</div>
+
+<script>
+  // Video modal
+  var vplayer = document.getElementById('vmodal-player');
+  var vmodal  = document.getElementById('vmodal');
+  var vfallback = document.getElementById('vmodal-fallback');
+  var vdl = document.getElementById('vmodal-dl-link');
+  var vlabel = document.getElementById('vmodal-label');
+
+  function openVideo(src, label) {
+    vlabel.textContent = label;
+    vplayer.src = src;
+    vdl.href = src;
+    vfallback.style.display = 'none';
+    vplayer.style.display = 'block';
+    vmodal.classList.add('open');
+    vplayer.load();
+
+    vplayer.onerror = function() {
+      vplayer.style.display = 'none';
+      vfallback.style.display = 'block';
+    };
+
+    setTimeout(function(){ vplayer.play().catch(function(){}); }, 200);
+  }
+
+  function closeVideoBtn() {
+    vplayer.pause();
+    vplayer.src = '';
+    vmodal.classList.remove('open');
+  }
+  function closeVideo(e) {
+    if (e.target === vmodal) closeVideoBtn();
+  }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeVideoBtn(); closeBookModal(); }});
+
+  // Load video preview frames
+  window.addEventListener('load', function(){
+    ['vpreview1','vpreview2'].forEach(function(id){
+      var v = document.getElementById(id);
+      if(v){ v.currentTime=1; }
+    });
+  });
+
+  // Book modal
+  function openBookModal(){ document.getElementById('bookModal').classList.add('open'); }
+  function closeBookModal(e){ if(!e || e.target===document.getElementById('bookModal')) document.getElementById('bookModal').classList.remove('open'); }
+</script>
+</body>
+</html>
