@@ -3,13 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ihlos Travel — Umra Sayohatlari</title>
+  
+  <!-- ================= БАЗОВОЕ SEO ================= -->
+  <!-- Главный заголовок страницы (виден во вкладке и в поиске Google) -->
+  <title>Ihlos Travel — Umra Sayohatlari | O'zbekiston</title>
+  
+  <!-- Описание сайта (текст под ссылкой в Google) -->
+  <meta name="description" content="Ihlos Travel bilan Makka va Madinaga muqaddas Umra sayohati. Qulay mehmonxonalar, tajribali guruh rahbarlari, viza va aviachiptalar. O'zingizga mos paketni hozir band qiling!">
+  
+  <!-- Ключевые слова (сейчас поисковики смотрят на них меньше, но для базы нужно) -->
+  <meta name="keywords" content="Umra, Ihlos Travel, Umra sayohati, Makka, Madina, ziyorat, umra narxlari, umra 2026, O'zbekiston, umra vizasi, haj">
+  <meta name="author" content="Ihlos Travel">
+  
+  <!-- Указываем главный домен -->
+  <link rel="canonical" href="https://umra.ourschool.uz/">
+
+  <!-- ================= OPEN GRAPH (ДЛЯ TELEGRAM, FACEBOOK, ИИ) ================= -->
+  <!-- Эти теги создают ту самую "красивую карточку", когда ты кидаешь ссылку -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://umra.ourschool.uz/">
+  <meta property="og:title" content="Ihlos Travel — Muqaddas Umra Sayohati">
+  <meta property="og:description" content="Makka va Madinaga ishonchli sayohat. Litsenziyaga ega Ihlos Travel bilan ruhiy tasallini his eting. Paketlar 1050$ dan boshlanadi.">
+  
+  <!-- ВАЖНО: Путь к картинке для превью должен быть полным (абсолютным)! -->
+  <!-- Я поставил твою фотку мечети. Когда зальешь сайт на хостинг, именно она будет в ТГ -->
+  <meta property="og:image" content="https://umra.ourschool.uz/MuqaddasMasjid.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- ================= TWITTER CARDS ================= -->
+  <!-- Некоторые мессенджеры и платформы используют формат Твиттера -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://umra.ourschool.uz/">
+  <meta name="twitter:title" content="Ihlos Travel — Muqaddas Umra Sayohati">
+  <meta name="twitter:description" content="Makka va Madinaga ishonchli sayohat. Paketlar 1050$ dan boshlanadi.">
+  <meta name="twitter:image" content="https://umra.ourschool.uz/MuqaddasMasjid.jpg">
+
+  <!-- ================= FAVICON (ИКОНКА ВО ВКЛАДКЕ БРАУЗЕРА) ================= -->
+  <!-- Берем твой логотип, чтобы он красиво висел на вкладке -->
+  <link rel="icon" href="ihlostravelicon.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="ihlostravelicon.jpg">
+
+  <meta name="google-site-verification" content="9YpUgio5tYsadggdAr_xGZ-KoMsiI7jPqV5swC4Lvps" />
+  <!-- ================= ШРИФТЫ И СТИЛИ ================= -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
       --gold: #D4AF37;
       --gold-light: #E8C97A;
-      --gold-glow: rgba(212, 175, 55, 0.25);
+      --gold-glow: rgba(212, 175, 55, 0.45);
       --dark: #0A0A0F;
       --dark-lighter: #12121A;
       --charcoal: #1A1A2E;
@@ -36,35 +78,158 @@
     /* Navbar */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(10, 10, 15, 0.85);
+      background: linear-gradient(180deg, rgba(10, 10, 15, 0.95) 0%, rgba(5, 5, 5, 0.9 modern) 100%);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--glass-border);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
       padding: 0 5%;
-      height: 64px;
+      height: 70px;
     }
     .navbar-inner {
       max-width: 1400px; margin: 0 auto;
       height: 100%;
       display: flex; align-items: center; justify-content: space-between;
     }
+    
+    /* Логотип и Текст */
+    .nav-logo-container {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
     .nav-logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem; font-weight: 700; color: var(--white);
-      text-decoration: none;
+      letter-spacing: 0.5px;
     }
     .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
+
+    /* Круглая иконка со свечением */
+    .nav-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 15px var(--gold-glow), inset 0 0 10px rgba(0,0,0,0.5);
+      transition: all 0.4s ease-in-out;
+    }
+    .nav-logo-container:hover .nav-icon {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 0 25px var(--gold), 0 0 10px var(--gold-glow);
+    }
+
+    /* Навигация (Десктоп) */
+    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
     .nav-links a {
       color: var(--text-muted); text-decoration: none;
-      font-size: 0.9rem; font-weight: 500;
+      font-size: 0.95rem; font-weight: 500;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--gold); }
+    
+    /* Кнопка Бронирования */
     .nav-cta {
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
       color: var(--dark) !important;
       padding: 10px 24px; border-radius: 50px;
       font-weight: 600 !important; font-size: 0.85rem !important;
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+      transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--gold);
+    }
+
+    /* Бургер-кнопка (Скрыта на ПК) */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--gold);
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* ================= АДАПТИВ ПОД ТЕЛЕФОНЫ ================= */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex; /* Показываем бургер на мобилках */
+        z-index: 1001;
+      }
+
+      /* Анимация бургера в крестик */
+      .menu-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      /* Мобильное выпадающее меню */
+      .nav-links {
+        position: absolute;
+        top: 100%; left: 0; width: 100%;
+        background: rgba(10, 10, 15, 0.98);
+        border-bottom: 2px solid var(--gold);
+        padding: 30px 20px;
+        gap: 24px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        
+        /* Скрываем и сдвигаем для красивого выезда */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(20px);
+      }
+
+      /* Класс активации меню от JS */
+      .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        font-size: 1.1rem;
+        padding: 10px 0;
+        color: var(--white);
+      }
+      .nav-cta {
+        display: inline-block;
+        width: auto;
+        padding: 12px 40px;
+        margin-top: 10px;
+      }
+
+      /* Настройки секций под мобилки */
+      .hero { min-height: 50vh; padding: 120px 20px 40px; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .product-img { height: 140px; }
+      .product-body { padding: 14px; }
+      .product-title { font-size: 0.95rem; }
+      .product-price { font-size: 1.1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr; }
     }
 
     /* Hero */
@@ -72,7 +237,7 @@
       min-height: 60vh;
       display: flex; align-items: center; justify-content: center;
       text-align: center;
-      padding: 100px 5% 60px;
+      padding: 120px 5% 60px;
       position: relative;
       background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.08), transparent 60%);
     }
@@ -299,27 +464,23 @@
       color: var(--text-muted);
       font-size: 0.85rem;
     }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hero { min-height: 50vh; padding: 80px 20px 40px; }
-      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .product-img { height: 140px; }
-      .product-body { padding: 14px; }
-      .product-title { font-size: 0.95rem; }
-      .product-price { font-size: 1.1rem; }
-    }
-    @media (max-width: 480px) {
-      .product-grid { grid-template-columns: 1fr; }
-    }
   </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="#" class="nav-logo">Ihlos <span>Travel</span></a>
+    <a href="#" class="nav-logo-container">
+      <img src="ihlostravelicon.jpg" alt="Ihlos Travel" class="nav-icon">
+      <span class="nav-logo">Ihlos <span>Travel</span></span>
+    </a>
+
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <ul class="nav-links">
       <li><a href="#packages">Paketlar</a></li>
       <li><a href="#why">Nima Uchun Biz</a></li>
@@ -329,7 +490,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div>
     <h1>Umra Ziyoratiga <em>Xush Kelibsiz</em></h1>
@@ -341,7 +501,6 @@
   </div>
 </section>
 
-<!-- PACKAGES -->
 <section class="packages-section" id="packages">
   <div class="section-header">
     <h2>Sayohat <span>Paketlari</span></h2>
@@ -349,10 +508,8 @@
   </div>
 
   <div class="product-grid">
-
-    <!-- Standart -->
     <a href="standart.html" class="product-card">
-      <img class="product-img" src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80" alt="Standart">
+      <img class="product-img" src="MuqaddasMasjid.jpg" alt="Standart">
       <div class="product-body">
         <span class="product-badge">Mashhur</span>
         <div class="product-title">Standart</div>
@@ -376,9 +533,8 @@
       </div>
     </a>
 
-    <!-- Standart+ -->
     <a href="standart-plus.html" class="product-card">
-      <img class="product-img" src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80" alt="Standart+">
+      <img class="product-img" src="masjidichi.jpg" alt="Standart+">
       <div class="product-body">
         <span class="product-badge">Yaxshi narxdagi</span>
         <div class="product-title">Standart+</div>
@@ -402,14 +558,13 @@
       </div>
     </a>
 
-    <!-- Comfort -->
     <a href="comfort.html" class="product-card">
-      <img class="product-img" src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?w=600&q=80" alt="Comfort">
+      <img class="product-img" src="kaba.jpg" alt="Comfort">
       <div class="product-body">
         <span class="product-badge" style="background:rgba(212,175,55,0.2);color:var(--gold-light);">Eng ko'p tanlangan</span>
         <div class="product-title">Comfort</div>
         <div class="product-sub">4 kun Madina + 6 kun Makka</div>
-        <div class="product-price">$1,100</div>
+        <div class="product-price"> $1,500 - $1,350 - $1400 </div>
         <div class="product-price-note">dan boshlab / kishi</div>
         <div class="product-meta">
           <span class="product-chip">
@@ -428,12 +583,11 @@
       </div>
     </a>
 
-    <!-- Luxury -->
     <a href="luxury.html" class="product-card">
-      <img class="product-img" src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=600&q=80" alt="Luxury">
+      <img class="product-img" src="people.jpg" alt="Luxury">
       <div class="product-body">
         <span class="product-badge" style="background:rgba(180,140,255,0.12);color:#c4a5ff;">Premium</span>
-        <div class="product-title">Luxury</div>
+        <div class="product-title">Lux</div>
         <div class="product-sub">7 kun Madina + 10 kun Makka</div>
         <div class="product-price">$1,800</div>
         <div class="product-price-note">dan boshlab / kishi</div>
@@ -454,7 +608,6 @@
       </div>
     </a>
 
-    <!-- Individual -->
     <a href="individual.html" class="product-card">
       <img class="product-img" src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80" alt="Individual">
       <div class="product-body">
@@ -479,11 +632,9 @@
         </div>
       </div>
     </a>
-
   </div>
 </section>
 
-<!-- WHY US -->
 <section class="why-section" id="why">
   <div class="section-header" style="margin-bottom:40px;">
     <h2>Nima Uchun <span>Biz?</span></h2>
@@ -520,7 +671,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact-section" id="contact">
   <h2>Biz Bilan <span>Bog'laning</span></h2>
   <p>Savollaringiz bormi? Mutaxassislarimiz sizga yordam beradi.</p>
@@ -536,10 +686,29 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>© 2025 Ihlos Travel. Barcha huquqlar himoyalangan.</p>
+  <p>© 2026 Ihlos Travel. Barcha huquqlar himoyalangan.</p>
 </footer>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const navItems = document.querySelectorAll('.nav-links a');
+
+  // Открытие/закрытие меню при клике на бургер
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+
+  // Автоматическое закрытие меню при тапе на любой пункт списка
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+  });
+</script>
 
 </body>
 </html>
