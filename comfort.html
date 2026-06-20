@@ -200,8 +200,30 @@ html, body {
     .tl-c{padding-bottom:18px;flex:1}.tl-t{font-weight:700;font-size:0.9rem;color:var(--text)}
     .tl-s{font-size:0.8rem;color:var(--muted);margin-top:2px}
     .tl-b{display:inline-block;margin-top:5px;font-size:0.7rem;font-weight:700;padding:3px 9px;border-radius:999px;background:rgba(212,175,55,.08);border:1px solid var(--border);color:var(--gold)}
-    .dates-wrap{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-    .date-chip{padding:7px 14px;border-radius:999px;background:rgba(212,175,55,.07);border:1px solid var(--border);color:var(--gold);font-weight:600;font-size:0.88rem}
+.dates-wrap {
+  display: flex;
+  flex-wrap: wrap;       /* Разрешает перенос на новые строки */
+  gap: 10px;             /* Расстояние между чипсами */
+  margin-top: 8px;
+}
+
+.date-chip {
+  /* Расчет: 50% ширины минус половина отступа (5px), чтобы два чипса идеально встали в ряд */
+  width: calc(50% - 5px); 
+  box-sizing: border-box;  /* Важно, чтобы border и padding не ломали ширину */
+  text-align: center;      /* Выравнивает дату по центру чипса */
+  
+  /* Ваш оригинальный дизайн */
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, .07);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
     .cta{margin:34px 0 0;background:var(--card);border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:30px 24px;text-align:center;position:relative;overflow:hidden}
     .cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -10%,rgba(212,175,55,.07),transparent 60%);pointer-events:none}
     .cta h2{font-size:1.35rem;font-weight:800;color:var(--text);margin-bottom:5px}
@@ -234,20 +256,8 @@ html, body {
 <div class="vhero">
   <div class="section-eyebrow"><span class="dot"></span>Mehmonxona ko'rinishlari</div>
   <div class="vrow">
-    <div class="vcard" onclick="openVid('StandartKabaHotel.MP4','Makka — Taj Park Hotel')">
-      <div class="vthumb">
-        <video src="StandartKabaHotel.MP4" muted playsinline preload="metadata" id="vp1"></video>
-        <div class="voverlay"><div class="play-ring"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vcity">Makka</div></div>
-      </div>
-      <div class="vinfo"><div><div class="vname">Taj Park Hotel</div><div class="vdist">Makka mehmonxonasi</div></div><div class="vbadge">▶ Video</div></div>
-    </div>
-    <div class="vcard" onclick="openVid('StandartMadinaHotel.MP4','Madina — Nusk al Hijra')">
-      <div class="vthumb">
-        <video src="StandartMadinaHotel.MP4" muted playsinline preload="metadata" id="vp2"></video>
-        <div class="voverlay"><div class="play-ring"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vcity">Madina</div></div>
-      </div>
-      <div class="vinfo"><div><div class="vname">Nusk al Hijra</div><div class="vdist">Madina mehmonxonasi</div></div><div class="vbadge">▶ Video</div></div>
-    </div>
+    <img src="taj park hotel/tajpark.jpg" alt="Comfort" class="responsive-img clickable-preview" onclick="openModalGigant()">
+    <div class="vinfo"><div><div class="vname">Nusk al Hijra</div><div class="vdist">Madina mehmonxonasi</div></div><div class="vbadge">▶ Video</div></div>
   </div>
 </div>
 
@@ -278,9 +288,9 @@ html, body {
     <div><h2>Narxlar</h2><p>Kishi soniga qarab</p></div>
   </div>
   <div class="g3">
-    <div class="pcard"><div class="pax">4 kishi</div><div class="amt">$1,100 <span>/ kishi</span></div><div class="pdesc">To'rt kishilik xona</div></div>
-    <div class="pcard"><div class="pax">3 kishi</div><div class="amt">$1,150 <span>/ kishi</span></div><div class="pdesc">Uch kishilik xona</div></div>
-    <div class="pcard feat"><div class="pbadge">★ Ko'p tanlanadi</div><div class="pax">2 kishi</div><div class="amt">$1,200 <span>/ kishi</span></div><div class="pdesc">Juft xona</div></div>
+    <div class="pcard"><div class="pax">4 kishi</div><div class="amt">$1,350 <span>/ kishi</span></div><div class="pdesc">To'rt kishilik xona</div></div>
+    <div class="pcard"><div class="pax">3 kishi</div><div class="amt">$1,400 <span>/ kishi</span></div><div class="pdesc">Uch kishilik xona</div></div>
+    <div class="pcard feat"><div class="pbadge">★ Ko'p tanlanadi</div><div class="pax">2 kishi</div><div class="amt">$1,450 <span>/ kishi</span></div><div class="pdesc">Juft xona</div></div>
   </div>
 
   <div class="g2" style="margin-top:26px">
@@ -298,7 +308,7 @@ html, body {
   </div>
   <div class="tl-c" style="padding-bottom:0">
     <!-- Добавили класс clickable-preview -->
-    <img src="comfort.png" alt="Comfort" class="responsive-img clickable-preview" onclick="openModal()">
+    <img src="comfort1.png" alt="Comfort" class="responsive-img clickable-preview" onclick="openModal()">
 
   </div>
 </div>
@@ -340,9 +350,15 @@ html, body {
     <div><h2>Ketish sanalari</h2><p>Mavjud guruhlar</p></div>
   </div>
   <div class="card"><div class="dates-wrap">
-    <span class="date-chip">18.06.2025</span>
-    <span class="date-chip">25.06.2025</span>
-    <span class="date-chip">02.07.2025</span>
+    <span class="date-chip">24.06.2026</span>
+    <span class="date-chip">01.07.2026</span>
+    <span class="date-chip">08.07.2026</span>
+    <span class="date-chip">15.07.2026</span>
+    <span class="date-chip">22.07.2026</span>
+    <span class="date-chip">29.07.2026</span>
+
+
+
   </div></div>
 
   <div class="cta">
@@ -381,8 +397,18 @@ window.addEventListener('load',function(){[document.getElementById('vp1'),docume
 function openModal() {
   const modal = document.getElementById("imageModal");
   const modalImg = document.getElementById("modalImg");
-  
-  modalImg.src = "comfort.png"; 
+
+  modalImg.src = "comfort1.png"; 
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden"; // Запрещаем скролл сайта
+}
+
+
+function openModalGigant() {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImg");
+
+  modalImg.src = "taj park hotel/tajpark.jpg"; 
   modal.classList.add("show");
   document.body.style.overflow = "hidden"; // Запрещаем скролл сайта
 }
