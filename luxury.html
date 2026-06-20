@@ -9,6 +9,14 @@
   <title>Luxury Paket — Umra Sayohati</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+
+
+
+/* Стили для активации вашего модального окна */
+.vmodal-bg#imageModal.show {
+  display: flex;
+}
+
     :root{--gold:#D4AF37;--gold-mid:#F0D778;--dark:#0C0B09;--card:#1E1B14;--border:rgba(212,175,55,0.18);--border-soft:rgba(255,255,255,0.07);--text:#F2EDD6;--muted:#8B856E;--green-deep:#0D2B1E}
     *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
     body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -123,22 +131,33 @@
 <div class="vhero">
   <div class="section-eyebrow"><span class="dot"></span>Mehmonxona ko'rinishlari</div>
   <div class="vrow">
-    <div class="vcard" onclick="openVid('StandartKabaHotel.MP4','Makka — Hilton Makka')">
+    <div class="vcard" onclick="openModal('AdressJabalOmarHotel/AdressJabalOmarHotel.jfif')">
       <div class="vthumb">
-        <video src="StandartKabaHotel.MP4" muted playsinline preload="metadata" id="vp1"></video>
+        <img src="AdressJabalOmarHotel/AdressJabalOmarHotel.jfif" alt="Luxury" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+
+        
         <div class="voverlay"><div class="play-ring"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vcity">Makka</div></div>
       </div>
-      <div class="vinfo"><div><div class="vname">Hilton Makka</div><div class="vdist">VIP mehmonxona</div></div><div class="vbadge">▶ Video</div></div>
+      <div class="vinfo"><div><div class="vname"> Adress Jabal Omar Hotel 5⭐️</div><div class="vdist">VIP mehmonxona</div></div><div class="vbadge">▶ Video</div></div>
     </div>
-    <div class="vcard" onclick="openVid('StandartMadinaHotel.MP4','Madina — Anwar Al-Madinah')">
+    <div class="vcard" onclick="openModal('MiasHotel/MiasHotel.jpg')">
       <div class="vthumb">
-        <video src="StandartMadinaHotel.MP4" muted playsinline preload="metadata" id="vp2"></video>
+        <img src="MiasHotel/MiasHotel.jpg" alt="Luxury" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
         <div class="voverlay"><div class="play-ring"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vcity">Madina</div></div>
       </div>
-      <div class="vinfo"><div><div class="vname">Anwar Al-Madinah</div><div class="vdist">Premium mehmonxona</div></div><div class="vbadge">▶ Video</div></div>
+      <div class="vinfo"><div><div class="vname">Mias Hotel 5⭐️</div><div class="vdist">Premium mehmonxona</div></div><div class="vbadge">▶ Video</div></div>
     </div>
   </div>
 </div>
+
+<!-- Модальное окно для просмотра картинок -->
+<div id="imageModal" class="vmodal-bg" onclick="closeModal()">
+  <span class="vmodal-close" onclick="event.stopPropagation(); closeModal()">&times;</span>
+  <div class="vmodal-inner" onclick="event.stopPropagation()">
+    <img id="modalImg" src="" alt="Mehmonxona" style="width:90%; display:block; max-height:50vh; object-fit:contain; background:#000;">
+  </div>
+</div>
+
 
 <div class="vmodal-bg" id="vmodal" onclick="closeVidBg(event)">
   <div class="vmodal-inner" onclick="event.stopPropagation()">
@@ -167,8 +186,9 @@
     <div><h2>Narxlar</h2><p>Kishi soniga qarab</p></div>
   </div>
   <div class="g2-price">
-    <div class="pcard"><div class="pax">2 kishi</div><div class="amt">$1,800 <span>/ kishi</span></div><div class="pdesc">Juft xona</div></div>
-    <div class="pcard feat"><div class="pbadge">★ VIP</div><div class="pax">1 kishi</div><div class="amt">$2,200 <span>/ kishi</span></div><div class="pdesc">Individual xona</div></div>
+    <div class="pcard"><div class="pax">4 kishi</div><div class="amt">$1,800 <span>/ kishi</span></div><div class="pdesc">Juft xona</div></div>
+    <div class="pcard"><div class="pax">3 kishi</div><div class="amt">$1,900 <span>/ kishi</span></div><div class="pdesc">Juft xona</div></div>
+    <div class="pcard feat"><div class="pbadge">★ VIP</div><div class="pax">2 kishi</div><div class="amt">$1,990 <span>/ kishi</span></div><div class="pdesc">Individual xona</div></div>
   </div>
 
   <div class="g2" style="margin-top:26px">
@@ -235,6 +255,30 @@ function closeBook(){document.getElementById('mbook').classList.remove('open')}
 function closeBookBg(e){if(e.target===document.getElementById('mbook'))closeBook()}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeVid();closeBook()}});
 window.addEventListener('load',function(){[document.getElementById('vp1'),document.getElementById('vp2')].forEach(function(v){if(v)v.currentTime=1})});
+
+
+function openModal(imageSrc) {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImg");
+console.log(imageSrc);
+  modalImg.src = imageSrc; 
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden"; // Запрещаем скролл сайта
+}
+
+function closeModal() {
+  const modal = document.getElementById("imageModal");
+  modal.classList.remove("show");
+  document.body.style.overflow = ""; // Возвращаем скролл сайта
+}
+
+// Закрытие на кнопку Esc
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+});
+
 </script>
 </body>
 </html>
