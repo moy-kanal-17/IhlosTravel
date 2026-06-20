@@ -253,11 +253,21 @@ html, body {
   <span class="topbar-title">Comfort Paket</span>
 </div>
 
-<div class="vhero">
+<div style="padding:24px 20px 0;max-width:600px;margin:0 auto">
   <div class="section-eyebrow"><span class="dot"></span>Mehmonxona ko'rinishlari</div>
-  <div class="vrow">
-    <img src="taj park hotel/tajpark.jpg" alt="Comfort" class="responsive-img clickable-preview" onclick="openModalGigant()">
-    <div class="vinfo"><div><div class="vname">Nusk al Hijra</div><div class="vdist">Madina mehmonxonasi</div></div><div class="vbadge">▶ Video</div></div>
+  
+  <div style="display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--gold) rgba(212,175,55,0.1)">
+    <style>
+      .photo-scroll::-webkit-scrollbar{height:4px}
+      .photo-scroll::-webkit-scrollbar-track{background:rgba(212,175,55,0.1);border-radius:999px}
+      .photo-scroll::-webkit-scrollbar-thumb{background:var(--gold);border-radius:999px}
+    </style>
+    <img src="MiasHotel/sajamadinah.jpg" alt="Saja Al Madinah"
+      style="flex:0 0 calc(50% - 6px);height:220px;object-fit:cover;border-radius:16px;scroll-snap-align:start;cursor:zoom-in"
+      onclick="openModalGigant('MiasHotel/sajamadinah.jpg')">
+    <img src="taj park hotel/taj-park-hotel-158.jpg" alt="Taj Park Hotel"
+      style="flex:0 0 calc(50% - 6px);height:220px;object-fit:cover;border-radius:16px;scroll-snap-align:start;cursor:zoom-in"
+      onclick="openModalGigant('taj park hotel/taj-park-hotel-158.jpg')">
   </div>
 </div>
 
@@ -274,10 +284,10 @@ html, body {
   <div class="hero">
     <div class="hero-ey">Umra Sayohati</div>
     <h1>Comfort <em>Paket</em></h1>
-    <p class="hero-sub">4 kun Madina + 6 kun Makka — eng yaxshi narxdagi qulaylik va mukammal xizmat.</p>
+    <p class="hero-sub">3 kun Madina + 6 kun Makka — eng yaxshi narxdagi qulaylik va mukammal xizmat.</p>
     <div class="hero-tags">
       <span class="tag">10 kun jami</span>
-      <span class="tag">4 kun Madina</span>
+      <span class="tag">3 kun Madina</span>
       <span class="tag">6 kun Makka</span>
       <span class="tag">⭐ Tavsiya etilgan</span>
     </div>
@@ -323,8 +333,8 @@ html, body {
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px">
-      <div class="hcard"><div class="hmap"><div class="hpin"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg></div></div><div class="hbody"><div class="hcity">Madina</div><div class="hname">Nusk al Hijra</div><div class="hdist"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Madina mehmonxonasi</div></div></div>
-      <div class="hcard"><div class="hmap"><div class="hpin"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg></div></div><div class="hbody"><div class="hcity">Makka</div><div class="hname">Taj Park Hotel</div><div class="hdist"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Makka mehmonxonasi</div></div></div>
+      <!-- <div class="hcard"><div class="hmap"><div class="hpin"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg></div></div><div class="hbody"><div class="hcity">Madina</div><div class="hname">Nusk al Hijra</div><div class="hdist"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Madina mehmonxonasi</div></div></div> -->
+      <!-- <div class="hcard"><div class="hmap"><div class="hpin"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg></div></div><div class="hbody"><div class="hcity">Makka</div><div class="hname">Taj Park Hotel</div><div class="hdist"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Makka mehmonxonasi</div></div></div> -->
     </div>
   </div>
 
