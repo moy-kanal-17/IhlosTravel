@@ -13,9 +13,51 @@
 
 
 /* Стили для активации вашего модального окна */
-.vmodal-bg#imageModal.show {
-  display: flex;
+.vmodal-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
 }
+.vmodal-bg.show { display: flex; }
+.vmodal-bg.open { display: flex; }
+
+.vmodal-inner {
+  position: relative;
+  max-width: min(90vw, 900px);
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vmodal-inner img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(90vw, 900px);
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.vmodal-close {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  font-size: 32px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10000;
+  opacity: 0.8;
+}
+.vmodal-close:hover { opacity: 1; }
 
     :root{--gold:#D4AF37;--gold-mid:#F0D778;--dark:#0C0B09;--card:#1E1B14;--border:rgba(212,175,55,0.18);--border-soft:rgba(255,255,255,0.07);--text:#F2EDD6;--muted:#8B856E;--green-deep:#0D2B1E}
     *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
@@ -44,12 +86,6 @@
     .vinfo{padding:12px 16px 14px;display:flex;align-items:center;justify-content:space-between}
     .vname{font-weight:700;font-size:0.9rem;color:var(--text)}.vdist{font-size:0.75rem;color:var(--muted);margin-top:2px}
     .vbadge{font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(212,175,55,.1);border:1px solid var(--border);color:var(--gold);white-space:nowrap}
-    .vmodal-bg{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:16px}
-    .vmodal-bg.open{display:flex}
-    .vmodal-inner{position:relative;width:100%;max-width:860px;background:#000;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 30px 80px rgba(0,0,0,.7)}
-    .vmodal-inner video{width:100%;display:block;max-height:72vh;object-fit:contain;background:#000}
-    .vmodal-close{position:absolute;top:10px;right:10px;z-index:10;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
-    .vmodal-close:hover{background:rgba(255,255,255,.15)}
     .vmodal-label{padding:12px 16px;font-weight:600;font-size:0.88rem;color:var(--text);background:var(--card);border-top:1px solid var(--border)}
     .vmodal-fallback{padding:36px 24px;text-align:center;display:none}
     .vmodal-fallback p{color:var(--muted);font-size:0.88rem;margin-bottom:14px}
@@ -154,7 +190,8 @@
 <div id="imageModal" class="vmodal-bg" onclick="closeModal()">
   <span class="vmodal-close" onclick="event.stopPropagation(); closeModal()">&times;</span>
   <div class="vmodal-inner" onclick="event.stopPropagation()">
-    <img id="modalImg" src="" alt="Mehmonxona" style="width:90%; display:block; max-height:50vh; object-fit:contain; background:#000;">
+    <img id="modalImg" src="" alt="Mehmonxona">
+
   </div>
 </div>
 
@@ -171,7 +208,7 @@
 <div class="page">
   <div class="hero">
     <div class="hero-ey">Umra Sayohati</div>
-    <h1>Luxe + <em>Paket</em></h1>
+    <h1>Luxury + <em>Paket</em></h1>
     <p class="hero-sub">5 kun Madina + 5 kun Makka — VIP darajadagi xizmat va premium mehmonxonalar.</p>
     <div class="hero-tags">
       <span class="tag">10 kun jami</span>
@@ -196,8 +233,8 @@
       <div style="font-size:0.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Yo'nalish</div>
       <div class="tl">
         <div class="tli"><div class="tl-l"><div class="tl-d"></div><div class="tl-line"></div></div><div class="tl-c"><div class="tl-t">Toshkent -> Madina </div><div class="tl-s">To'g'ri reys</div></div></div>
-        <div class="tli"><div class="tl-l"><div class="tl-d"></div><div class="tl-line"></div></div><div class="tl-c"><div class="tl-t">Madina</div><div class="tl-s">Anwar Al-Madinah, ziyoratlar</div><div class="tl-b">5 kun</div></div></div>
-        <div class="tli"><div class="tl-l"><div class="tl-d"></div><div class="tl-line"></div></div><div class="tl-c"><div class="tl-t">Makka</div><div class="tl-s">Hilton Makka, Umra</div><div class="tl-b">5 kun</div></div></div>
+        <div class="tli"><div class="tl-l"><div class="tl-d"></div><div class="tl-line"></div></div><div class="tl-c"><div class="tl-t">Madina</div><div class="tl-s">Adress Jabal Omar Hotel, ziyoratlar</div><div class="tl-b">5 kun</div></div></div>
+        <div class="tli"><div class="tl-l"><div class="tl-d"></div><div class="tl-line"></div></div><div class="tl-c"><div class="tl-t">Makka</div><div class="tl-s">Mias Hotel, Umra</div><div class="tl-b">5 kun</div></div></div>
         <div class="tli"><div class="tl-l"><div class="tl-d dim"></div></div><div class="tl-c" style="padding-bottom:0"><div class="tl-t">Jidda → Toshkent</div><div class="tl-s">Qaytish</div></div></div>
       </div>
     </div>
